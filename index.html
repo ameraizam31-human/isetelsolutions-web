@@ -1461,144 +1461,6 @@
         /* ============================================ */
 
         /* ============================================ */
-        /* BACKGROUND MUSIC TOGGLE STYLES - START */
-        /* ============================================ */
-
-        #music-toggle {
-            position: fixed;
-            bottom: 24px;
-            right: 100px;
-            z-index: 9998;
-            font-family: 'Inter', sans-serif;
-        }
-
-        @media (max-width: 480px) {
-            #music-toggle {
-                bottom: 16px;
-                right: 84px;
-            }
-        }
-
-        .music-btn {
-            position: relative;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: rgba(10, 10, 15, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: visible;
-        }
-
-        .music-btn:hover {
-            border-color: rgba(168, 85, 247, 0.5);
-            box-shadow: 0 8px 32px rgba(168, 85, 247, 0.3);
-            transform: scale(1.05);
-        }
-
-        .music-btn.playing {
-            border-color: #22d3ee;
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
-        }
-
-        .music-icon-container {
-            font-size: 20px;
-            color: #9ca3af;
-            transition: color 0.3s ease;
-            z-index: 2;
-        }
-
-        .music-btn:hover .music-icon-container,
-        .music-btn.playing .music-icon-container {
-            color: #22d3ee;
-        }
-
-        /* Animated Sound Waves */
-        .music-waves {
-            position: absolute;
-            inset: -4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .music-btn.playing .music-waves {
-            opacity: 1;
-        }
-
-        .music-waves span {
-            width: 3px;
-            background: linear-gradient(180deg, #a855f7, #22d3ee);
-            border-radius: 3px;
-            animation: soundWave 1s ease-in-out infinite;
-        }
-
-        .music-waves span:nth-child(1) { height: 8px; animation-delay: 0s; }
-        .music-waves span:nth-child(2) { height: 16px; animation-delay: 0.1s; }
-        .music-waves span:nth-child(3) { height: 12px; animation-delay: 0.2s; }
-        .music-waves span:nth-child(4) { height: 20px; animation-delay: 0.3s; }
-
-        @keyframes soundWave {
-            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
-            50% { transform: scaleY(1); opacity: 1; }
-        }
-
-        /* Tooltip */
-        .music-tooltip {
-            position: absolute;
-            bottom: calc(100% + 12px);
-            right: 0;
-            padding: 10px 16px;
-            background: rgba(10, 10, 15, 0.95);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 12px;
-            color: #22d3ee;
-            font-size: 12px;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .music-tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            right: 20px;
-            border: 6px solid transparent;
-            border-top-color: rgba(168, 85, 247, 0.3);
-        }
-
-        .music-btn:hover .music-tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* Mobile: Hide tooltip */
-        @media (max-width: 640px) {
-            .music-tooltip {
-                display: none;
-            }
-        }
-
-        /* ============================================ */
-        /* BACKGROUND MUSIC TOGGLE STYLES - END */
-        /* ============================================ */
-
-        /* ============================================ */
         /* SOCIAL BUTTONS STYLES - START */
         /* ============================================ */
         
@@ -1730,6 +1592,9 @@
                 <a href="#home" class="text-sm text-gray-300 hover:text-white py-2">Home</a>
                 <a href="#certificates" class="text-sm text-gray-300 hover:text-white py-2">Certificates</a>
                 <a href="#projects" class="text-sm text-gray-300 hover:text-white py-2">Projects</a>
+                <a href="#process" class="text-sm text-gray-300 hover:text-white py-2">Project Process</a>
+                <a href="#tech-stack" class="text-sm text-gray-300 hover:text-white py-2">Tech Stack</a>
+                <a href="#faq" class="text-sm text-gray-300 hover:text-white py-2">FAQ</a>
                 <a href="#contact" class="text-sm text-gray-300 hover:text-white py-2">Contact</a>
             </div>
         </div>
@@ -2672,7 +2537,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500">Email</p>
-                                <p class="text-white">amer@isetelsolutions.my</p>
+                                <p class="text-white">support@isetelsolutions.my</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
@@ -2692,10 +2557,10 @@
                     <div class="glass-card rounded-2xl p-8">
                         <h3 class="text-2xl font-bold text-white mb-6">Contact Form</h3>
                         <p class="text-gray-400 text-sm mb-6">
-                            Please contact me directly at <a href="mailto:amer@isetelsolutions.my" class="text-purple-400 hover:underline">amer@isetelsolutions.my</a> or drop your info
+                            Please contact us directly at <a href="mailto:support@isetelsolutions.my" class="text-purple-400 hover:underline">support@isetelsolutions.my</a> or drop your info
                         </p>
                         
-                        <form class="space-y-4">
+                        <form class="space-y-4" data-netlify="true" name="contact">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm text-gray-400 mb-2">Full Name</label>
@@ -2762,39 +2627,14 @@
                     <span class="text-xs text-gray-500 block">SSM: 202503352257</span>
                 </div>
             </div>
+            <p class="text-gray-400 text-sm mb-2">
+                <a href="mailto:support@isetelsolutions.my" class="hover:text-purple-400 transition-colors">support@isetelsolutions.my</a>
+            </p>
             <p class="text-gray-500 text-sm">
                 &copy; 2026 I Setel Solutions (SSM: 202503352257). All rights reserved.
             </p>
         </div>
     </footer>
-
-    <!-- ============================================ -->
-    <!-- BACKGROUND MUSIC TOGGLE - START -->
-    <!-- ============================================ -->
-    <div id="music-toggle" class="music-toggle">
-        <button id="music-btn" class="music-btn" aria-label="Toggle background music">
-            <div class="music-icon-container">
-                <i class="fas fa-music" id="music-icon-play"></i>
-                <i class="fas fa-pause" id="music-icon-pause" style="display: none;"></i>
-            </div>
-            <div class="music-waves">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="music-tooltip">
-                <span>Cyberpunk Chillwave</span>
-            </div>
-        </button>
-        <audio id="bg-music" loop>
-            <!-- Replace with your actual audio file URL -->
-            <source src="" type="audio/mpeg">
-        </audio>
-    </div>
-    <!-- ============================================ -->
-    <!-- BACKGROUND MUSIC TOGGLE - END -->
-    <!-- ============================================ -->
 
     <!-- ============================================ -->
     <!-- AI CHATBOT WIDGET - START -->
@@ -3684,105 +3524,6 @@
 
         /* ============================================ */
         /* FAQ ACCORDION JS - END */
-        /* ============================================ */
-
-        /* ============================================ */
-        /* BACKGROUND MUSIC JS - START */
-        /* ============================================ */
-
-        const MusicPlayer = {
-            isPlaying: false,
-            audio: null,
-            btn: null,
-            iconPlay: null,
-            iconPause: null,
-
-            init() {
-                this.audio = document.getElementById('bg-music');
-                this.btn = document.getElementById('music-btn');
-                this.iconPlay = document.getElementById('music-icon-play');
-                this.iconPause = document.getElementById('music-icon-pause');
-
-                if (!this.audio || !this.btn) return;
-
-                this.bindEvents();
-                
-                // Check for saved state
-                const savedState = localStorage.getItem('music-playing');
-                if (savedState === 'true') {
-                    // Don't auto-play due to browser policies, just update UI
-                    this.updateUI(true);
-                }
-            },
-
-            bindEvents() {
-                this.btn.addEventListener('click', () => this.toggle());
-                
-                // Handle audio ended
-                this.audio.addEventListener('ended', () => {
-                    this.isPlaying = false;
-                    this.updateUI(false);
-                });
-
-                // Handle errors
-                this.audio.addEventListener('error', (e) => {
-                    console.error('Audio error:', e);
-                    this.isPlaying = false;
-                    this.updateUI(false);
-                });
-            },
-
-            toggle() {
-                if (this.isPlaying) {
-                    this.pause();
-                } else {
-                    this.play();
-                }
-            },
-
-            async play() {
-                try {
-                    // Check if audio source is set
-                    if (!this.audio.querySelector('source')?.src || 
-                        this.audio.querySelector('source').src === window.location.href) {
-                        alert('Please add your audio file URL in the HTML first!\n\nLook for: <source src="YOUR_AUDIO_URL_HERE" type="audio/mpeg">');
-                        return;
-                    }
-
-                    await this.audio.play();
-                    this.isPlaying = true;
-                    this.updateUI(true);
-                    localStorage.setItem('music-playing', 'true');
-                } catch (error) {
-                    console.error('Playback failed:', error);
-                    alert('Unable to play audio. Please check your audio file URL.');
-                }
-            },
-
-            pause() {
-                this.audio.pause();
-                this.isPlaying = false;
-                this.updateUI(false);
-                localStorage.setItem('music-playing', 'false');
-            },
-
-            updateUI(playing) {
-                if (playing) {
-                    this.btn.classList.add('playing');
-                    this.iconPlay.style.display = 'none';
-                    this.iconPause.style.display = 'block';
-                } else {
-                    this.btn.classList.remove('playing');
-                    this.iconPlay.style.display = 'block';
-                    this.iconPause.style.display = 'none';
-                }
-            }
-        };
-
-        MusicPlayer.init();
-
-        /* ============================================ */
-        /* BACKGROUND MUSIC JS - END */
         /* ============================================ */
 
         /* ============================================ */
