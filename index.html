@@ -1,0 +1,3793 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amer Aizam | AI Solutions Architect - I Setel Solutions</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#050508',
+                            800: '#0a0a0f',
+                            700: '#12121a',
+                            600: '#1a1a25',
+                        },
+                        accent: {
+                            purple: '#a855f7',
+                            cyan: '#22d3ee',
+                            pink: '#ec4899',
+                            orange: '#f97316',
+                            green: '#22c55e',
+                            blue: '#3b82f6',
+                            red: '#ef4444',
+                            yellow: '#eab308',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(168, 85, 247, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050508;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050508;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #a855f7, #22d3ee);
+            border-radius: 4px;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+        }
+        
+        /* Project card hover */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);
+        }
+        
+        /* Certificate card hover */
+        .certificate-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(34, 211, 238, 0.25);
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+        
+        /* Input focus styles */
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #a855f7;
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+        }
+        
+        /* Background particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(168, 85, 247, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #a855f7, #22d3ee);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Section reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.3);
+        }
+        
+        /* Profile image glow */
+        .profile-glow {
+            box-shadow: 
+                0 0 60px rgba(168, 85, 247, 0.4),
+                0 0 100px rgba(34, 211, 238, 0.2),
+                inset 0 0 60px rgba(168, 85, 247, 0.1);
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* ============================================ */
+        /* AI CHATBOT WIDGET STYLES - START */
+        /* ============================================ */
+        
+        #ai-chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-toggle-btn {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 8px 32px rgba(168, 85, 247, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .chat-toggle-btn:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 
+                0 12px 40px rgba(168, 85, 247, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(34, 211, 238, 0.3);
+        }
+
+        .chat-toggle-icon {
+            font-size: 28px;
+            color: white;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-toggle-btn:hover .chat-toggle-icon {
+            transform: scale(1.1);
+        }
+
+        .chat-toggle-pulse {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7, #22d3ee);
+            opacity: 0.4;
+            animation: chatPulse 2s ease-out infinite;
+            z-index: -1;
+        }
+
+        .chat-toggle-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            animation: chatRing 2s ease-out infinite;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+        }
+
+        @keyframes chatRing {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 380px;
+            max-width: calc(100vw - 48px);
+            height: 520px;
+            max-height: calc(100vh - 120px);
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(168, 85, 247, 0.1);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .chat-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(34, 211, 238, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .chat-status {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 2px solid #0a0a0f;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+        }
+
+        .chat-header-text h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .chat-header-subtitle {
+            color: #22d3ee;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .chat-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chat-close-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(168, 85, 247, 0.3) transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(168, 85, 247, 0.3);
+            border-radius: 3px;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 12px;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .chat-message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .chat-message.bot .chat-message-avatar {
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            color: white;
+        }
+
+        .chat-message.user .chat-message-avatar {
+            background: rgba(255, 255, 255, 0.1);
+            color: #22d3ee;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        .chat-message-content {
+            max-width: calc(100% - 60px);
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .chat-message.bot .chat-message-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e5e7eb;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.user .chat-message-content {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .chat-message-content p {
+            margin: 0 0 8px 0;
+        }
+
+        .chat-message-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .chat-typing {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 24px 16px;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        .chat-typing.hidden {
+            display: none;
+        }
+
+        .chat-typing-dots {
+            display: flex;
+            gap: 4px;
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #a855f7, #22d3ee);
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite both;
+        }
+
+        .chat-typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .chat-typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .chat-typing-text {
+            font-size: 12px;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .chat-input-area {
+            padding: 16px 24px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-wrapper:focus-within {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+        }
+
+        #chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 16px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #chat-input::placeholder {
+            color: #6b7280;
+        }
+
+        .chat-send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+        }
+
+        .chat-send-btn:active {
+            transform: scale(0.95);
+        }
+
+        .chat-send-btn i {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-send-btn:hover i {
+            transform: translateX(2px);
+        }
+
+        .chat-input-footer {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .chat-input-footer span {
+            font-size: 11px;
+            color: #4b5563;
+        }
+
+        @media (max-width: 480px) {
+            #ai-chat-widget {
+                bottom: 16px;
+                right: 16px;
+            }
+            
+            .chat-window {
+                width: calc(100vw - 32px);
+                right: -8px;
+                height: 480px;
+            }
+            
+            .chat-toggle-btn {
+                width: 56px;
+                height: 56px;
+            }
+            
+            .chat-toggle-icon {
+                font-size: 24px;
+            }
+        }
+
+        /* ============================================ */
+        /* AI SOLUTION ESTIMATOR STYLES - START */
+        /* ============================================ */
+
+        #ai-estimator {
+            position: relative;
+        }
+
+        .estimator-step {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .estimator-step.hidden {
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .estimator-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .estimator-option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(34, 211, 238, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .estimator-option:hover {
+            transform: translateY(-4px);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(168, 85, 247, 0.2);
+        }
+
+        .estimator-option:hover::before {
+            opacity: 1;
+        }
+
+        .estimator-option-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .estimator-option:hover .estimator-option-icon {
+            transform: scale(1.1);
+        }
+
+        .estimator-option-text {
+            flex: 1;
+        }
+
+        .estimator-option-text h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .estimator-option-text p {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .estimator-option-arrow {
+            color: #4b5563;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .estimator-option:hover .estimator-option-arrow {
+            opacity: 1;
+            transform: translateX(0);
+            color: #a855f7;
+        }
+
+        .estimator-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #9ca3af;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .estimator-back-btn:hover {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: rgba(168, 85, 247, 0.3);
+            color: #a855f7;
+        }
+
+        .estimator-result {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .estimator-result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #a855f7, #22d3ee);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .result-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            flex-shrink: 0;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(168, 85, 247, 0); }
+        }
+
+        .result-title-group h3 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            color: #22c55e;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .result-badge i {
+            font-size: 10px;
+        }
+
+        .result-description {
+            color: #9ca3af;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .result-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .result-features {
+            margin-bottom: 32px;
+        }
+
+        .result-features h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-features h4 i {
+            color: #a855f7;
+        }
+
+        .features-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d1d5db;
+            font-size: 15px;
+        }
+
+        .feature-item i {
+            width: 24px;
+            height: 24px;
+            background: rgba(34, 197, 94, 0.15);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .result-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            color: #c4b5fd;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        .estimator-cta {
+            text-align: center;
+        }
+
+        .estimator-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            border-radius: 14px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .estimator-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(168, 85, 247, 0.4);
+        }
+
+        .estimator-cta-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .estimator-cta-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .trust-indicator {
+            padding: 16px 24px;
+        }
+
+        @media (max-width: 768px) {
+            .estimator-result {
+                padding: 24px;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .result-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .result-title-group h3 {
+                font-size: 22px;
+            }
+            
+            .result-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ============================================ */
+        /* PROJECT TIMELINE STYLES - START */
+        /* ============================================ */
+
+        #process {
+            position: relative;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #a855f7, #22d3ee);
+            border-radius: 2px;
+            transition: width 1.5s ease-out;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        .timeline-progress.active {
+            width: 100%;
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-step:nth-child(1) { transition-delay: 0.1s; }
+        .timeline-step:nth-child(2) { transition-delay: 0.2s; }
+        .timeline-step:nth-child(3) { transition-delay: 0.3s; }
+        .timeline-step:nth-child(4) { transition-delay: 0.4s; }
+        .timeline-step:nth-child(5) { transition-delay: 0.5s; }
+
+        .timeline-node {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-node-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(168, 85, 247, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-step:hover .timeline-node-inner {
+            transform: scale(1.15);
+            box-shadow: 0 12px 40px rgba(34, 211, 238, 0.5);
+        }
+
+        .timeline-node-pulse {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            animation: timelinePulse 2s ease-out infinite;
+        }
+
+        @keyframes timelinePulse {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        .timeline-content {
+            text-align: center;
+            max-width: 220px;
+        }
+
+        .timeline-card {
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-step:hover .timeline-card {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(168, 85, 247, 0.2);
+        }
+
+        .timeline-number {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #22d3ee;
+            background: rgba(34, 211, 238, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-tags {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .timeline-tags span {
+            font-size: 11px;
+            color: #a855f7;
+            background: rgba(168, 85, 247, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        /* Mobile Timeline - Vertical */
+        @media (max-width: 768px) {
+            .timeline-line {
+                top: 0;
+                bottom: 0;
+                left: 32px;
+                right: auto;
+                width: 4px;
+                height: auto;
+                transform: none;
+            }
+
+            .timeline-progress {
+                width: 100%;
+                height: 0;
+            }
+
+            .timeline-progress.active {
+                height: 100%;
+                width: 100%;
+            }
+
+            .timeline-steps {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .timeline-step {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 24px;
+                text-align: left;
+            }
+
+            .timeline-node {
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+
+            .timeline-content {
+                text-align: left;
+                max-width: none;
+                flex: 1;
+            }
+
+            .timeline-tags {
+                justify-content: flex-start;
+            }
+        }
+
+        /* ============================================ */
+        /* PROJECT TIMELINE STYLES - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* TECH STACK STYLES - START */
+        /* ============================================ */
+
+        #tech-stack {
+            position: relative;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+        }
+
+        .tech-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, var(--glow-color, rgba(168, 85, 247, 0.15)) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--glow-color, rgba(168, 85, 247, 0.4));
+        }
+
+        .tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .tech-icon-wrapper {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #9ca3af;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        .tech-card:hover .tech-icon-wrapper {
+            color: var(--glow-color, #a855f7);
+            transform: scale(1.1);
+        }
+
+        .tech-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-desc {
+            font-size: 12px;
+            color: #6b7280;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--glow-color, #a855f7), var(--glow-color-2, #22d3ee));
+            border-radius: 22px;
+            opacity: 0;
+            z-index: -1;
+            filter: blur(20px);
+            transition: opacity 0.5s ease;
+        }
+
+        .tech-card:hover .tech-glow {
+            opacity: 0.4;
+        }
+
+        /* Individual tech colors */
+        .tech-card[data-tech="python"] { --glow-color: #3776ab; --glow-color-2: #ffd43b; }
+        .tech-card[data-tech="aws"] { --glow-color: #ff9900; --glow-color-2: #232f3e; }
+        .tech-card[data-tech="gcp"] { --glow-color: #4285f4; --glow-color-2: #34a853; }
+        .tech-card[data-tech="github"] { --glow-color: #a855f7; --glow-color-2: #22d3ee; }
+        .tech-card[data-tech="anthropic"] { --glow-color: #d4a574; --glow-color-2: #e8d4c4; }
+        .tech-card[data-tech="groq"] { --glow-color: #f55036; --glow-color-2: #ff8c42; }
+        .tech-card[data-tech="fastapi"] { --glow-color: #009688; --glow-color-2: #00bcd4; }
+        .tech-card[data-tech="docker"] { --glow-color: #2496ed; --glow-color-2: #0db7ed; }
+        .tech-card[data-tech="llama"] { --glow-color: #4a5568; --glow-color-2: #718096; }
+        .tech-card[data-tech="mistral"] { --glow-color: #fd7f20; --glow-color-2: #ffa94d; }
+        .tech-card[data-tech="postgres"] { --glow-color: #336791; --glow-color-2: #5c9bd1; }
+        .tech-card[data-tech="redis"] { --glow-color: #dc382d; --glow-color-2: #ff6b6b; }
+        .tech-card[data-tech="react"] { --glow-color: #61dafb; --glow-color-2: #282c34; }
+        .tech-card[data-tech="nodejs"] { --glow-color: #339933; --glow-color-2: #8cc84b; }
+
+        /* ============================================ */
+        /* TECH STACK STYLES - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* FAQ ACCORDION STYLES - START */
+        /* ============================================ */
+
+        #faq {
+            position: relative;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+
+        .faq-item.active {
+            border-color: rgba(168, 85, 247, 0.3);
+            background: rgba(168, 85, 247, 0.05);
+            box-shadow: 0 20px 40px -20px rgba(168, 85, 247, 0.2);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 28px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .faq-q-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: white;
+            padding-right: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .faq-item.active .faq-q-text {
+            color: #22d3ee;
+        }
+
+        .faq-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            background: linear-gradient(135deg, #a855f7 0%, #22d3ee 100%);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 28px 28px;
+            color: #9ca3af;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .faq-answer-inner p {
+            margin-bottom: 12px;
+        }
+
+        .faq-answer-inner p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        .faq-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: #d1d5db;
+        }
+
+        .faq-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #a855f7, #22d3ee);
+            border-radius: 50%;
+        }
+
+        @media (max-width: 640px) {
+            .faq-question {
+                padding: 20px;
+            }
+            
+            .faq-q-text {
+                font-size: 15px;
+            }
+            
+            .faq-answer-inner {
+                padding: 0 20px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* ============================================ */
+        /* FAQ ACCORDION STYLES - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* BACKGROUND MUSIC TOGGLE STYLES - START */
+        /* ============================================ */
+
+        #music-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 100px;
+            z-index: 9998;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media (max-width: 480px) {
+            #music-toggle {
+                bottom: 16px;
+                right: 84px;
+            }
+        }
+
+        .music-btn {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: visible;
+        }
+
+        .music-btn:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 8px 32px rgba(168, 85, 247, 0.3);
+            transform: scale(1.05);
+        }
+
+        .music-btn.playing {
+            border-color: #22d3ee;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+        }
+
+        .music-icon-container {
+            font-size: 20px;
+            color: #9ca3af;
+            transition: color 0.3s ease;
+            z-index: 2;
+        }
+
+        .music-btn:hover .music-icon-container,
+        .music-btn.playing .music-icon-container {
+            color: #22d3ee;
+        }
+
+        /* Animated Sound Waves */
+        .music-waves {
+            position: absolute;
+            inset: -4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .music-btn.playing .music-waves {
+            opacity: 1;
+        }
+
+        .music-waves span {
+            width: 3px;
+            background: linear-gradient(180deg, #a855f7, #22d3ee);
+            border-radius: 3px;
+            animation: soundWave 1s ease-in-out infinite;
+        }
+
+        .music-waves span:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .music-waves span:nth-child(2) { height: 16px; animation-delay: 0.1s; }
+        .music-waves span:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+        .music-waves span:nth-child(4) { height: 20px; animation-delay: 0.3s; }
+
+        @keyframes soundWave {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Tooltip */
+        .music-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            right: 0;
+            padding: 10px 16px;
+            background: rgba(10, 10, 15, 0.95);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            color: #22d3ee;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .music-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .music-btn:hover .music-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile: Hide tooltip */
+        @media (max-width: 640px) {
+            .music-tooltip {
+                display: none;
+            }
+        }
+
+        /* ============================================ */
+        /* BACKGROUND MUSIC TOGGLE STYLES - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* SOCIAL BUTTONS STYLES - START */
+        /* ============================================ */
+        
+        .social-btn {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: visible;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px);
+            border-color: var(--btn-color);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 10px 30px -10px var(--btn-color),
+                0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn i {
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover i {
+            color: var(--btn-color);
+            transform: scale(1.15);
+        }
+
+        /* Tooltip */
+        .social-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            padding: 8px 14px;
+            background: var(--btn-color);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .social-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--btn-color);
+        }
+
+        .social-btn:hover .social-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Specific brand colors on hover */
+        .social-btn[href*="linkedin"]:hover { --btn-color: #0077b5; }
+        .social-btn[href*="github"]:hover { --btn-color: #a855f7; }
+        .social-btn[href*="wa.me"]:hover { --btn-color: #25d366; }
+        .social-btn[href*="t.me"]:hover { --btn-color: #0088cc; }
+
+        @media (max-width: 640px) {
+            .social-btn {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .social-tooltip {
+                display: none;
+            }
+        }
+
+        /* ============================================ */
+        /* SOCIAL BUTTONS STYLES - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* END CUSTOM STYLES */
+        /* ============================================ */
+    </style>
+</head>
+<body class="bg-dark-900 min-h-screen">
+    
+    <!-- Background Particles -->
+    <div id="particles" class="fixed inset-0 pointer-events-none overflow-hidden"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <img src="isetel-logo.jpg" alt="I Setel" class="w-10 h-10 rounded-lg object-cover">
+                <div>
+                    <span class="text-lg font-bold gradient-text">I Setel Solutions</span>
+                    <span class="text-xs text-gray-500 block">SSM: 202503352257</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-link text-sm text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="#certificates" class="nav-link text-sm text-gray-300 hover:text-white transition-colors">Certificates</a>
+                <a href="#projects" class="nav-link text-sm text-gray-300 hover:text-white transition-colors">Projects</a>
+                <a href="#contact" class="nav-link text-sm text-gray-300 hover:text-white transition-colors">Contact</a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 glass-card p-4">
+            <div class="flex flex-col gap-3">
+                <a href="#home" class="text-sm text-gray-300 hover:text-white py-2">Home</a>
+                <a href="#certificates" class="text-sm text-gray-300 hover:text-white py-2">Certificates</a>
+                <a href="#projects" class="text-sm text-gray-300 hover:text-white py-2">Projects</a>
+                <a href="#contact" class="text-sm text-gray-300 hover:text-white py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-cyan-900/10"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <div class="reveal">
+                <!-- Profile Image -->
+                <div class="mb-8 relative inline-block">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/40 to-cyan-500/40 rounded-full blur-xl animate-pulse"></div>
+                    <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden profile-glow border-2 border-purple-500/30 mx-auto">
+                        <img src="profile.jpg" alt="Amer Aizam" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center border-4 border-dark-900">
+                        <i class="fas fa-check text-white text-sm"></i>
+                    </div>
+                </div>
+                
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="text-sm text-gray-300">Available for work</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black mb-4">
+                    <span class="text-white">Hi, I'm </span>
+                    <span class="gradient-text">Amer Aizam</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-400 mb-2">AI Solutions Architect</p>
+                <p class="text-lg text-gray-500 mb-8">Founder of I Setel Solutions (SSM: 202503352257)</p>
+                
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+                    Specializing in Agentic AI Workflows, LLM Integration, and Enterprise Automation. 
+                    Transforming complex business challenges into intelligent automated solutions.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center gap-2">
+                        <span>View Projects</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 glass-card rounded-xl font-semibold text-white hover:border-purple-500/50 transition-all">
+                        Contact Me
+                    </a>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center gap-4 mt-10">
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" rel="noopener noreferrer" 
+                       class="social-btn group" style="--btn-color: #0077b5;">
+                        <i class="fab fa-linkedin text-xl"></i>
+                        <span class="social-tooltip">LinkedIn</span>
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/ameraizam31-human" target="_blank" rel="noopener noreferrer" 
+                       class="social-btn group" style="--btn-color: #333;">
+                        <i class="fab fa-github text-xl"></i>
+                        <span class="social-tooltip">GitHub</span>
+                    </a>
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/60139972853" target="_blank" rel="noopener noreferrer" 
+                       class="social-btn group" style="--btn-color: #25d366;">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span class="social-tooltip">WhatsApp</span>
+                    </a>
+                    <!-- Telegram -->
+                    <a href="https://t.me/isetelsolutions" target="_blank" rel="noopener noreferrer" 
+                       class="social-btn group" style="--btn-color: #0088cc;">
+                        <i class="fab fa-telegram text-xl"></i>
+                        <span class="social-tooltip">Telegram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#certificates" class="text-gray-500 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- AI SOLUTION ESTIMATOR - START -->
+    <!-- ============================================ -->
+    <section id="ai-estimator" class="py-24 relative overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/10 via-dark-900 to-purple-900/10"></div>
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="reveal text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-6">
+                    <i class="fas fa-calculator text-cyan-400"></i>
+                    <span class="text-sm text-gray-300">Interactive Tool</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-4">
+                    AI Solution <span class="gradient-text">Estimator</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                    Discover how AI can transform your business. Select your biggest challenge below 
+                    and get an instant recommendation with estimated ROI.
+                </p>
+            </div>
+
+            <!-- Estimator Container -->
+            <div class="reveal glass-card rounded-3xl p-8 md:p-12 border border-white/10" style="transition-delay: 0.1s;">
+                <!-- Step 1: Challenge Selection -->
+                <div id="estimator-step-1" class="estimator-step">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center">
+                        What's your biggest business bottleneck?
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Option Cards -->
+                        <button class="estimator-option" data-value="customer-service">
+                            <div class="estimator-option-icon bg-blue-500/20 text-blue-400">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="estimator-option-text">
+                                <h4>Customer Service</h4>
+                                <p>Overwhelmed support tickets</p>
+                            </div>
+                            <i class="fas fa-arrow-right estimator-option-arrow"></i>
+                        </button>
+
+                        <button class="estimator-option" data-value="data-entry">
+                            <div class="estimator-option-icon bg-green-500/20 text-green-400">
+                                <i class="fas fa-keyboard"></i>
+                            </div>
+                            <div class="estimator-option-text">
+                                <h4>Manual Data Entry</h4>
+                                <p>Repetitive typing & processing</p>
+                            </div>
+                            <i class="fas fa-arrow-right estimator-option-arrow"></i>
+                        </button>
+
+                        <button class="estimator-option" data-value="inventory">
+                            <div class="estimator-option-icon bg-orange-500/20 text-orange-400">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="estimator-option-text">
+                                <h4>Inventory Management</h4>
+                                <p>Stock tracking issues</p>
+                            </div>
+                            <i class="fas fa-arrow-right estimator-option-arrow"></i>
+                        </button>
+
+                        <button class="estimator-option" data-value="documents">
+                            <div class="estimator-option-icon bg-purple-500/20 text-purple-400">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="estimator-option-text">
+                                <h4>Document Processing</h4>
+                                <p>Invoice/forms handling</p>
+                            </div>
+                            <i class="fas fa-arrow-right estimator-option-arrow"></i>
+                        </button>
+
+                        <button class="estimator-option" data-value="analytics">
+                            <div class="estimator-option-icon bg-pink-500/20 text-pink-400">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="estimator-option-text">
+                                <h4>Data Analytics</h4>
+                                <p>Manual report generation</p>
+                            </div>
+                            <i class="fas fa-arrow-right estimator-option-arrow"></i>
+                        </button>
+
+                        <button class="estimator-option" data-value="scheduling">
+                            <div class="estimator-option-icon bg-cyan-500/20 text-cyan-400">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="estimator-option-text">
+                                <h4>Scheduling & Planning</h4>
+                                <p>Coordination overhead</p>
+                            </div>
+                            <i class="fas fa-arrow-right estimator-option-arrow"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Result Display (Hidden initially) -->
+                <div id="estimator-step-2" class="estimator-step hidden">
+                    <!-- Back Button -->
+                    <button id="estimator-back" class="estimator-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Choose different challenge</span>
+                    </button>
+
+                    <!-- Result Card -->
+                    <div id="estimator-result" class="estimator-result">
+                        <!-- Content injected by JavaScript -->
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="estimator-cta">
+                        <p class="text-gray-400 mb-4">Want a detailed implementation plan?</p>
+                        <a href="#contact" class="estimator-cta-btn">
+                            <span>Get Free Consultation</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="reveal mt-12 flex flex-wrap justify-center gap-8 text-center" style="transition-delay: 0.2s;">
+                <div class="trust-indicator">
+                    <div class="text-3xl font-bold gradient-text">85%</div>
+                    <div class="text-sm text-gray-500">Average Cost Reduction</div>
+                </div>
+                <div class="trust-indicator">
+                    <div class="text-3xl font-bold gradient-text">10x</div>
+                    <div class="text-sm text-gray-500">Faster Processing</div>
+                </div>
+                <div class="trust-indicator">
+                    <div class="text-3xl font-bold gradient-text">24/7</div>
+                    <div class="text-sm text-gray-500">AI Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- AI SOLUTION ESTIMATOR - END -->
+    <!-- ============================================ -->
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-5xl md:text-7xl font-black text-white mb-4">Certificates</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Professional certifications validating my expertise in AI and software development</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Certificate 1 - Anthropic Introduction to Agent Skills -->
+                <div class="reveal certificate-card glass-card rounded-2xl p-6" style="transition-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-certificate text-purple-400 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Introduction to Agent Skills</h3>
+                            <p class="text-purple-400 text-sm mb-2">Anthropic</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                                <span><i class="far fa-calendar-alt mr-1"></i>Apr 2026</span>
+                                <span><i class="fas fa-fingerprint mr-1"></i>xhnx9zofwcw9</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                                <span>Show Credential</span>
+                                <i class="fas fa-external-link-alt text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 2 - Anthropic Claude 101 -->
+                <div class="reveal certificate-card glass-card rounded-2xl p-6" style="transition-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-robot text-cyan-400 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Claude 101</h3>
+                            <p class="text-cyan-400 text-sm mb-2">Anthropic</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                                <span><i class="far fa-calendar-alt mr-1"></i>Apr 2026</span>
+                                <span><i class="fas fa-fingerprint mr-1"></i>fxrkbrmc3tqv</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                                <span>Show Credential</span>
+                                <i class="fas fa-external-link-alt text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 3 - Sololearn Project Planning with AI -->
+                <div class="reveal certificate-card glass-card rounded-2xl p-6" style="transition-delay: 0.3s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-project-diagram text-green-400 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Project Planning with AI</h3>
+                            <p class="text-green-400 text-sm mb-2">Sololearn</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                                <span><i class="far fa-calendar-alt mr-1"></i>Apr 2025</span>
+                                <span><i class="fas fa-fingerprint mr-1"></i>CC-WPFVAFUA</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-3">Skills: Project Management</p>
+                            <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                                <span>Show Credential</span>
+                                <i class="fas fa-external-link-alt text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 4 - Anthropic Claude Code in Action -->
+                <div class="reveal certificate-card glass-card rounded-2xl p-6" style="transition-delay: 0.4s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-code text-orange-400 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-white mb-1">Claude Code in Action</h3>
+                            <p class="text-orange-400 text-sm mb-2">Anthropic</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                                <span><i class="far fa-calendar-alt mr-1"></i>Apr 2026</span>
+                                <span><i class="fas fa-fingerprint mr-1"></i>3c3t99azp33k</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                                <span>Show Credential</span>
+                                <i class="fas fa-external-link-alt text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View All on LinkedIn -->
+            <div class="reveal text-center mt-10" style="transition-delay: 0.5s;">
+                <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" class="inline-flex items-center gap-3 px-6 py-3 glass-card rounded-xl hover:border-blue-500/50 transition-all">
+                    <i class="fab fa-linkedin text-blue-400 text-xl"></i>
+                    <span class="text-white">View All Certificates on LinkedIn</span>
+                    <i class="fas fa-external-link-alt text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/5 via-transparent to-purple-900/5"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-5xl md:text-7xl font-black text-white mb-4">Projects</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Explore my latest work in AI, automation, and web development</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="reveal project-card glass-card rounded-2xl overflow-hidden group" style="transition-delay: 0.1s;">
+                    <div class="h-48 bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+                        <i class="fas fa-robot text-6xl text-purple-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs rounded bg-purple-500/20 text-purple-400">AI</span>
+                            <span class="px-2 py-1 text-xs rounded bg-blue-500/20 text-blue-400">Python</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Agentic Workflow System</h3>
+                        <p class="text-gray-400 text-sm mb-4">Multi-agent AI system using Claude Agent SDK for automated task orchestration</p>
+                        <button onclick="openProjectModal('agentic')" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors text-sm">
+                            <span>Read Concept</span>
+                            <i class="fas fa-lightbulb"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="reveal project-card glass-card rounded-2xl overflow-hidden group" style="transition-delay: 0.2s;">
+                    <div class="h-48 bg-gradient-to-br from-cyan-900/50 to-green-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+                        <i class="fas fa-database text-6xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs rounded bg-cyan-500/20 text-cyan-400">API</span>
+                            <span class="px-2 py-1 text-xs rounded bg-green-500/20 text-green-400">FastAPI</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Data Extraction API</h3>
+                        <p class="text-gray-400 text-sm mb-4">AI-powered data extraction from documents into structured JSON schemas</p>
+                        <button onclick="openProjectModal('extraction')" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                            <span>Read Concept</span>
+                            <i class="fas fa-lightbulb"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="reveal project-card glass-card rounded-2xl overflow-hidden group" style="transition-delay: 0.3s;">
+                    <div class="h-48 bg-gradient-to-br from-orange-900/50 to-red-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+                        <i class="fas fa-brain text-6xl text-orange-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs rounded bg-orange-500/20 text-orange-400">LLM</span>
+                            <span class="px-2 py-1 text-xs rounded bg-red-500/20 text-red-400">MCP</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">LLM Integration Hub</h3>
+                        <p class="text-gray-400 text-sm mb-4">Secure bridge between LLMs and enterprise systems using Model Context Protocol</p>
+                        <button onclick="openProjectModal('llm')" class="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 transition-colors text-sm">
+                            <span>In Development</span>
+                            <i class="fas fa-code"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="reveal project-card glass-card rounded-2xl overflow-hidden group" style="transition-delay: 0.4s;">
+                    <div class="h-48 bg-gradient-to-br from-green-900/50 to-teal-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+                        <i class="fas fa-cogs text-6xl text-green-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs rounded bg-green-500/20 text-green-400">Automation</span>
+                            <span class="px-2 py-1 text-xs rounded bg-teal-500/20 text-teal-400">Workflow</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Automation Pipeline</h3>
+                        <p class="text-gray-400 text-sm mb-4">End-to-end workflow automation for enterprise business processes</p>
+                        <button onclick="openProjectModal('automation')" class="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors text-sm">
+                            <span>In Development</span>
+                            <i class="fas fa-code"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="reveal project-card glass-card rounded-2xl overflow-hidden group" style="transition-delay: 0.5s;">
+                    <div class="h-48 bg-gradient-to-br from-pink-900/50 to-purple-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+                        <i class="fas fa-comments text-6xl text-pink-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs rounded bg-pink-500/20 text-pink-400">Chatbot</span>
+                            <span class="px-2 py-1 text-xs rounded bg-purple-500/20 text-purple-400">RAG</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Enterprise AI Chatbot</h3>
+                        <p class="text-gray-400 text-sm mb-4">Intelligent conversational AI with RAG for enterprise knowledge bases</p>
+                        <button onclick="openProjectModal('chatbot')" class="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors text-sm">
+                            <span>Read Concept</span>
+                            <i class="fas fa-lightbulb"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="reveal project-card glass-card rounded-2xl overflow-hidden group" style="transition-delay: 0.6s;">
+                    <div class="h-48 bg-gradient-to-br from-yellow-900/50 to-orange-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+                        <i class="fas fa-network-wired text-6xl text-yellow-400 group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs rounded bg-yellow-500/20 text-yellow-400">API</span>
+                            <span class="px-2 py-1 text-xs rounded bg-orange-500/20 text-orange-400">Gateway</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Smart API Gateway</h3>
+                        <p class="text-gray-400 text-sm mb-4">AI-powered API management with intelligent routing and rate limiting</p>
+                        <button onclick="openProjectModal('gateway')" class="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors text-sm">
+                            <span>In Development</span>
+                            <i class="fas fa-code"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-dark-900/90 backdrop-blur-sm" onclick="closeProjectModal()"></div>
+        <div class="modal-content glass-card rounded-2xl p-6 max-w-lg w-full relative z-10">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center hover:bg-purple-500/20 transition-all">
+                <i class="fas fa-times text-white text-sm"></i>
+            </button>
+            
+            <div id="modal-body">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PROJECT PROCESS TIMELINE - START -->
+    <!-- ============================================ -->
+    <section id="process" class="py-24 relative overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-900 via-purple-900/5 to-dark-900"></div>
+        <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <div class="reveal text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-6">
+                    <i class="fas fa-project-diagram text-purple-400"></i>
+                    <span class="text-sm text-gray-300">Our Methodology</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-4">
+                    Project <span class="gradient-text">Process</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                    A structured, futuristic approach to delivering AI solutions that transform your business.
+                </p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="reveal timeline-container" style="transition-delay: 0.1s;">
+                <!-- Progress Line -->
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
+                </div>
+
+                <!-- Timeline Steps -->
+                <div class="timeline-steps">
+                    <!-- Step 1 -->
+                    <div class="timeline-step" data-step="1">
+                        <div class="timeline-node">
+                            <div class="timeline-node-inner">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="timeline-node-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-card glass-card">
+                                <span class="timeline-number">01</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Consultation</h3>
+                                <p class="text-gray-400 text-sm">Deep dive into your business challenges and AI opportunities.</p>
+                                <div class="timeline-tags">
+                                    <span>Requirements</span>
+                                    <span>Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-step" data-step="2">
+                        <div class="timeline-node">
+                            <div class="timeline-node-inner">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div class="timeline-node-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-card glass-card">
+                                <span class="timeline-number">02</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Quote & Deposit</h3>
+                                <p class="text-gray-400 text-sm">Free quotation provided and project kickoff upon agreed deposit.</p>
+                                <div class="timeline-tags">
+                                    <span>Free Quote</span>
+                                    <span>Agreement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-step" data-step="3">
+                        <div class="timeline-node">
+                            <div class="timeline-node-inner">
+                                <i class="fas fa-drafting-compass"></i>
+                            </div>
+                            <div class="timeline-node-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-card glass-card">
+                                <span class="timeline-number">03</span>
+                                <h3 class="text-xl font-bold text-white mb-2">AI Architecture</h3>
+                                <p class="text-gray-400 text-sm">Designing scalable, secure AI workflows tailored to your needs.</p>
+                                <div class="timeline-tags">
+                                    <span>System Design</span>
+                                    <span>Prototyping</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-step" data-step="4">
+                        <div class="timeline-node">
+                            <div class="timeline-node-inner">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="timeline-node-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-card glass-card">
+                                <span class="timeline-number">04</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Development</h3>
+                                <p class="text-gray-400 text-sm">Agile development with continuous testing and optimization.</p>
+                                <div class="timeline-tags">
+                                    <span>Coding</span>
+                                    <span>Testing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="timeline-step" data-step="5">
+                        <div class="timeline-node">
+                            <div class="timeline-node-inner">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="timeline-node-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-card glass-card">
+                                <span class="timeline-number">05</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Deploy & Support</h3>
+                                <p class="text-gray-400 text-sm">Seamless deployment with 24/7 monitoring and ongoing support.</p>
+                                <div class="timeline-tags">
+                                    <span>Launch</span>
+                                    <span>Maintenance</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- PROJECT PROCESS TIMELINE - END -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- TECH STACK SHOWCASE - START -->
+    <!-- ============================================ -->
+    <section id="tech-stack" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/5 via-dark-900 to-purple-900/5"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <div class="reveal text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-6">
+                    <i class="fas fa-layer-group text-cyan-400"></i>
+                    <span class="text-sm text-gray-300">Powered By</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-4">
+                    Tech <span class="gradient-text">Stack</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                    Enterprise-grade technologies powering our AI solutions.
+                </p>
+            </div>
+
+            <!-- Tech Grid -->
+            <div class="reveal tech-grid" style="transition-delay: 0.1s;">
+                <!-- Python -->
+                <div class="tech-card" data-tech="python">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h4 class="tech-name">Python</h4>
+                    <p class="tech-desc">Core Language</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- AWS -->
+                <div class="tech-card" data-tech="aws">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h4 class="tech-name">AWS</h4>
+                    <p class="tech-desc">Cloud Infrastructure</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Google Cloud -->
+                <div class="tech-card" data-tech="gcp">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h4 class="tech-name">Vertex AI</h4>
+                    <p class="tech-desc">Google Cloud ML</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- GitHub -->
+                <div class="tech-card" data-tech="github">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h4 class="tech-name">GitHub</h4>
+                    <p class="tech-desc">Version Control</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Anthropic -->
+                <div class="tech-card" data-tech="anthropic">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4 class="tech-name">Anthropic</h4>
+                    <p class="tech-desc">Claude AI</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Groq -->
+                <div class="tech-card" data-tech="groq">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 class="tech-name">Groq</h4>
+                    <p class="tech-desc">LPU Inference</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- FastAPI -->
+                <div class="tech-card" data-tech="fastapi">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4 class="tech-name">FastAPI</h4>
+                    <p class="tech-desc">API Framework</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Docker -->
+                <div class="tech-card" data-tech="docker">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h4 class="tech-name">Docker</h4>
+                    <p class="tech-desc">Containerization</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Llama -->
+                <div class="tech-card" data-tech="llama">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-horse"></i>
+                    </div>
+                    <h4 class="tech-name">Llama 3</h4>
+                    <p class="tech-desc">Open Source LLM</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Mistral -->
+                <div class="tech-card" data-tech="mistral">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h4 class="tech-name">Mistral AI</h4>
+                    <p class="tech-desc">Open Source LLM</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- PostgreSQL -->
+                <div class="tech-card" data-tech="postgres">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4 class="tech-name">PostgreSQL</h4>
+                    <p class="tech-desc">Open Source DB</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Redis -->
+                <div class="tech-card" data-tech="redis">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 class="tech-name">Redis</h4>
+                    <p class="tech-desc">In-Memory Store</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- React -->
+                <div class="tech-card" data-tech="react">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h4 class="tech-name">React</h4>
+                    <p class="tech-desc">Frontend Library</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Node.js -->
+                <div class="tech-card" data-tech="nodejs">
+                    <div class="tech-icon-wrapper">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h4 class="tech-name">Node.js</h4>
+                    <p class="tech-desc">Runtime Environment</p>
+                    <div class="tech-glow"></div>
+                </div>
+
+                <!-- Hugging Face -->
+                <div class="tech-card" data-tech="huggingface">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-face-smile"></i>
+                    </div>
+                    <h4 class="tech-name">Hugging Face</h4>
+                    <p class="tech-desc">Model Hub</p>
+                    <div class="tech-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- TECH STACK SHOWCASE - END -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- FAQ ACCORDION - START -->
+    <!-- ============================================ -->
+    <section id="faq" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-dark-900 to-cyan-900/10"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <div class="reveal text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-6">
+                    <i class="fas fa-question-circle text-purple-400"></i>
+                    <span class="text-sm text-gray-300">FAQ</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-4">
+                    Frequently Asked <span class="gradient-text">Questions</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                    Answers to common questions about our AI solutions and services.
+                </p>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="reveal faq-container" style="transition-delay: 0.1s;">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="faq-q-text">How long does it take to build an AI agent?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Depending on project scale, MVP prototypes are typically ready within <strong>2-4 weeks</strong>. For more complex AI agent systems with multiple API and database integrations, we estimate <strong>6-12 weeks</strong>. We use an Agile approach so you can track progress regularly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="faq-q-text">Is my company data secure?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p><strong>Yes, 100%.</strong> We utilize <strong>Private LLM</strong> architecture and industrial-grade <em>Cloud Security</em> to ensure your data remains confidential. Options we offer:</p>
+                            <ul class="faq-list">
+                                <li>On-premise deployment (AI on your own servers)</li>
+                                <li>End-to-end encryption</li>
+                                <li>Zero data retention with LLM providers</li>
+                                <li>Compliance with GDPR and Malaysia's PDPA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="faq-q-text">What is the cost to develop an AI system?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Costs depend on project complexity. We offer:</p>
+                            <ul class="faq-list">
+                                <li><strong>Project Basis:</strong> From RM 550 for prototype</li>
+                                <li><strong>Monthly Retainer:</strong> As low as RM 350/month depending on specs and model</li>
+                                <li><strong>Consultation:</strong> RM 135/hour</li>
+                            </ul>
+                            <p>Contact us for a <strong>free quotation</strong> tailored to your business needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span class="faq-q-text">Can the AI support multiple languages?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p><strong>Absolutely!</strong> Our AI solutions are <strong>multi-language</strong> and can be customized according to client needs. Modern LLMs like Llama 3.3 and Claude support numerous languages including:</p>
+                            <ul class="faq-list">
+                                <li>English (US/UK)</li>
+                                <li>Bahasa Malaysia & local dialects</li>
+                                <li>Chinese (Simplified/Traditional)</li>
+                                <li>Japanese, Korean, Arabic, and more</li>
+                                <li>Code-mixing (Manglish, Singlish, etc.)</li>
+                            </ul>
+                            <p>We can customize the AI to understand industry-specific terminology in any supported language.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- FAQ ACCORDION - END -->
+    <!-- ============================================ -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative min-h-screen flex items-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-dark-900"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-6 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left - Title -->
+                <div class="reveal">
+                    <h2 class="text-6xl md:text-8xl font-black text-white/10 uppercase mb-4">LET'S WORK</h2>
+                    <h2 class="text-6xl md:text-8xl font-black gradient-text uppercase">TOGETHER</h2>
+                    <p class="text-gray-400 mt-6 max-w-md">
+                        Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+                    </p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 glass-card rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-purple-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Email</p>
+                                <p class="text-white">amer@isetelsolutions.my</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 glass-card rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Location</p>
+                                <p class="text-white">Klang, Selangor, Malaysia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right - Form -->
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-white mb-6">Contact Form</h3>
+                        <p class="text-gray-400 text-sm mb-6">
+                            Please contact me directly at <a href="mailto:amer@isetelsolutions.my" class="text-purple-400 hover:underline">amer@isetelsolutions.my</a> or drop your info
+                        </p>
+                        
+                        <form class="space-y-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Full Name</label>
+                                    <input type="text" placeholder="Your Name" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Email Address</label>
+                                    <input type="email" placeholder="you@example.com" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Your Message</label>
+                                <textarea placeholder="Tell me about your project..." rows="4" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 resize-none"></textarea>
+                            </div>
+                            <p class="text-xs text-gray-500">
+                                I never share your data with anyone else. Pinky promise!
+                            </p>
+                            <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center justify-center gap-2">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="reveal mt-16 flex justify-center gap-4" style="transition-delay: 0.3s;">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/amer-aizam-b0961435b/details/certifications/" target="_blank" rel="noopener noreferrer" 
+                   class="social-btn group" style="--btn-color: #0077b5;">
+                    <i class="fab fa-linkedin text-xl"></i>
+                    <span class="social-tooltip">LinkedIn</span>
+                </a>
+                <!-- GitHub -->
+                <a href="https://github.com/ameraizam31-human" target="_blank" rel="noopener noreferrer" 
+                   class="social-btn group" style="--btn-color: #333;">
+                    <i class="fab fa-github text-xl"></i>
+                    <span class="social-tooltip">GitHub</span>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/60139972853" target="_blank" rel="noopener noreferrer" 
+                   class="social-btn group" style="--btn-color: #25d366;">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span class="social-tooltip">WhatsApp</span>
+                </a>
+                <!-- Telegram -->
+                <a href="https://t.me/isetelsolutions" target="_blank" rel="noopener noreferrer" 
+                   class="social-btn group" style="--btn-color: #0088cc;">
+                    <i class="fab fa-telegram text-xl"></i>
+                    <span class="social-tooltip">Telegram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="isetel-logo.jpg" alt="I Setel" class="w-8 h-8 rounded-lg object-cover">
+                <div>
+                    <span class="text-lg font-bold gradient-text">I Setel Solutions</span>
+                    <span class="text-xs text-gray-500 block">SSM: 202503352257</span>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 I Setel Solutions (SSM: 202503352257). All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- BACKGROUND MUSIC TOGGLE - START -->
+    <!-- ============================================ -->
+    <div id="music-toggle" class="music-toggle">
+        <button id="music-btn" class="music-btn" aria-label="Toggle background music">
+            <div class="music-icon-container">
+                <i class="fas fa-music" id="music-icon-play"></i>
+                <i class="fas fa-pause" id="music-icon-pause" style="display: none;"></i>
+            </div>
+            <div class="music-waves">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="music-tooltip">
+                <span>Cyberpunk Chillwave</span>
+            </div>
+        </button>
+        <audio id="bg-music" loop>
+            <!-- Replace with your actual audio file URL -->
+            <source src="" type="audio/mpeg">
+        </audio>
+    </div>
+    <!-- ============================================ -->
+    <!-- BACKGROUND MUSIC TOGGLE - END -->
+    <!-- ============================================ -->
+
+    <!-- ============================================ -->
+    <!-- AI CHATBOT WIDGET - START -->
+    <!-- ============================================ -->
+    <div id="ai-chat-widget">
+        <!-- Floating Chat Bubble -->
+        <button id="chat-toggle" class="chat-toggle-btn" aria-label="Open AI Assistant">
+            <div class="chat-toggle-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-toggle-pulse"></div>
+            <div class="chat-toggle-ring"></div>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="chat-window">
+            <!-- Header -->
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">
+                        <i class="fas fa-brain"></i>
+                        <span class="chat-status"></span>
+                    </div>
+                    <div class="chat-header-text">
+                        <h4>I Setel AI</h4>
+                        <span class="chat-header-subtitle">AI Solutions Expert</span>
+                    </div>
+                </div>
+                <button id="chat-close" class="chat-close-btn" aria-label="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Messages Container -->
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-message bot">
+                    <div class="chat-message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-message-content">
+                        <p>Hello! I'm the I Setel AI assistant. 👋</p>
+                        <p>How can I help you explore our AI solutions today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing Indicator (Hidden by default) -->
+            <div id="chat-typing" class="chat-typing hidden">
+                <div class="chat-typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="chat-typing-text">AI is thinking...</span>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="chat-input" 
+                        placeholder="Ask about AI solutions..." 
+                        autocomplete="off"
+                        maxlength="500"
+                    >
+                    <button id="chat-send" class="chat-send-btn" aria-label="Send message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="chat-input-footer">
+                    <span>Powered by I Setel Solutions</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================ -->
+    <!-- AI CHATBOT WIDGET - END -->
+    <!-- ============================================ -->
+
+    <script>
+        // Create background particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Project Modal Data
+        const projectData = {
+            'agentic': {
+                title: 'Agentic Workflow System',
+                icon: 'fa-robot',
+                color: 'purple',
+                status: 'Concept',
+                description: 'A sophisticated multi-agent AI system that orchestrates complex workflows autonomously.',
+                concept: [
+                    'Break down large tasks into smaller subtasks',
+                    'Assign tasks to specialized AI agents',
+                    'Coordinate agent execution in real-time',
+                    'Handle failures and retries automatically',
+                    'Provide detailed execution logs and analytics'
+                ],
+                tech: ['Python', 'Claude SDK', 'FastAPI', 'Redis', 'Docker'],
+                useCases: 'Ideal for businesses needing to automate complex multi-step processes like document processing, customer support triage, and data analysis pipelines.'
+            },
+            'extraction': {
+                title: 'Data Extraction API',
+                icon: 'fa-database',
+                color: 'cyan',
+                status: 'Concept',
+                description: 'AI-powered service that transforms unstructured documents into structured data.',
+                concept: [
+                    'Extract data from PDFs, images, and scanned documents',
+                    'Convert to clean JSON schemas automatically',
+                    'Validate extracted data with AI confidence scoring',
+                    'Support custom schema definitions',
+                    'Batch processing for high-volume workflows'
+                ],
+                tech: ['Python', 'OpenAI', 'PostgreSQL', 'FastAPI', 'AWS S3'],
+                useCases: 'Perfect for invoice processing, form digitization, contract analysis, and any scenario requiring data extraction from documents.'
+            },
+            'llm': {
+                title: 'LLM Integration Hub',
+                icon: 'fa-brain',
+                color: 'orange',
+                status: 'In Development',
+                description: 'Secure bridge connecting Large Language Models to enterprise backend systems.',
+                concept: [
+                    'Implement Model Context Protocol (MCP) for secure integration',
+                    'Support multiple LLM providers (OpenAI, Anthropic, etc.)',
+                    'Enterprise-grade security with audit logging',
+                    'Rate limiting and usage quotas',
+                    'Seamless database and API connections'
+                ],
+                tech: ['Python', 'MCP', 'OpenAI', 'Claude', 'PostgreSQL'],
+                useCases: 'Enables AI assistants to safely interact with company databases, CRM systems, and internal APIs without exposing sensitive data.'
+            },
+            'automation': {
+                title: 'Automation Pipeline',
+                icon: 'fa-cogs',
+                color: 'green',
+                status: 'In Development',
+                description: 'End-to-end workflow automation platform for enterprise processes.',
+                concept: [
+                    'Visual workflow builder with drag-and-drop interface',
+                    '300+ pre-built integrations with popular tools',
+                    'Scheduled and event-triggered workflows',
+                    'Built-in error handling with automatic retries',
+                    'Real-time analytics and execution dashboard'
+                ],
+                tech: ['Python', 'Celery', 'Redis', 'Docker', 'React'],
+                useCases: 'Automate repetitive business tasks like data synchronization, report generation, email campaigns, and approval workflows.'
+            },
+            'chatbot': {
+                title: 'Enterprise AI Chatbot',
+                icon: 'fa-comments',
+                color: 'pink',
+                status: 'Concept',
+                description: 'Intelligent conversational AI powered by Retrieval-Augmented Generation.',
+                concept: [
+                    'RAG-powered responses using company knowledge base',
+                    'Multi-language support for global teams',
+                    'Conversation history and context retention',
+                    'Seamless human handoff when needed',
+                    'Analytics dashboard for conversation insights'
+                ],
+                tech: ['Python', 'OpenAI', 'Pinecone', 'FastAPI', 'React'],
+                useCases: 'Internal helpdesk, customer support, HR inquiries, IT troubleshooting, and any scenario requiring instant answers from company documentation.'
+            },
+            'gateway': {
+                title: 'Smart API Gateway',
+                icon: 'fa-network-wired',
+                color: 'yellow',
+                status: 'In Development',
+                description: 'AI-powered API management with intelligent features.',
+                concept: [
+                    'Intelligent request routing based on load and latency',
+                    'AI-powered rate limiting that adapts to traffic patterns',
+                    'Automatic scaling based on demand predictions',
+                    'Real-time analytics and performance monitoring',
+                    'Circuit breaker patterns for fault tolerance'
+                ],
+                tech: ['Go', 'Redis', 'PostgreSQL', 'Kubernetes', 'Prometheus'],
+                useCases: 'Manage microservices architecture, optimize API performance, prevent overload, and gain insights into API usage patterns.'
+            }
+        };
+        
+        // Open Project Modal
+        function openProjectModal(projectId) {
+            const project = projectData[projectId];
+            if (!project) return;
+            
+            const modal = document.getElementById('project-modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            const colorClasses = {
+                purple: 'text-purple-400 bg-purple-500/20',
+                cyan: 'text-cyan-400 bg-cyan-500/20',
+                orange: 'text-orange-400 bg-orange-500/20',
+                green: 'text-green-400 bg-green-500/20',
+                pink: 'text-pink-400 bg-pink-500/20',
+                yellow: 'text-yellow-400 bg-yellow-500/20'
+            };
+            
+            const statusColor = project.status === 'In Development' ? 'text-orange-400' : 'text-cyan-400';
+            
+            modalBody.innerHTML = `
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 rounded-xl ${colorClasses[project.color]} flex items-center justify-center">
+                        <i class="fas ${project.icon} text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">${project.title}</h3>
+                        <span class="text-sm ${statusColor} flex items-center gap-2">
+                            <i class="fas ${project.status === 'In Development' ? 'fa-code' : 'fa-lightbulb'}"></i>
+                            ${project.status}
+                        </span>
+                    </div>
+                </div>
+                
+                <p class="text-gray-400 mb-6">${project.description}</p>
+                
+                <div class="mb-6">
+                    <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-yellow-400"></i>
+                        Key Concepts
+                    </h4>
+                    <ul class="space-y-2">
+                        ${project.concept.map(c => `
+                            <li class="flex items-start gap-2 text-gray-400 text-sm">
+                                <i class="fas fa-check-circle ${colorClasses[project.color].split(' ')[0]} mt-0.5"></i>
+                                <span>${c}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
+                        <i class="fas fa-code text-cyan-400"></i>
+                        Technologies
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${project.tech.map(t => `
+                            <span class="px-3 py-1 rounded-full glass-card text-sm text-gray-300">${t}</span>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="p-4 rounded-xl bg-dark-700/50 border border-white/5">
+                    <h4 class="text-white font-semibold mb-2 flex items-center gap-2">
+                        <i class="fas fa-bullseye text-red-400"></i>
+                        Use Cases
+                    </h4>
+                    <p class="text-gray-400 text-sm">${project.useCases}</p>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close Project Modal
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+        
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+
+        /* ============================================ */
+        /* AI CHATBOT WIDGET JS - START */
+        /* ============================================ */
+
+        const ChatbotWidget = {
+            // Configuration - Uses Netlify Serverless Function (SECURE)
+            config: {
+                // Use Netlify serverless function - API key is safely stored server-side
+                apiEndpoint: '/.netlify/functions/chat',
+                botName: 'I Setel AI',
+                typingDelay: 1000,
+                // Set to false to use real API, true for demo mode with mock responses
+                useMockMode: false,
+            },
+
+            isOpen: false,
+            isTyping: false,
+            messages: [],
+            elements: {},
+
+            init() {
+                this.cacheElements();
+                this.bindEvents();
+                this.loadMessages();
+            },
+
+            cacheElements() {
+                this.elements = {
+                    toggle: document.getElementById('chat-toggle'),
+                    close: document.getElementById('chat-close'),
+                    window: document.getElementById('chat-window'),
+                    messages: document.getElementById('chat-messages'),
+                    input: document.getElementById('chat-input'),
+                    send: document.getElementById('chat-send'),
+                    typing: document.getElementById('chat-typing'),
+                };
+            },
+
+            bindEvents() {
+                this.elements.toggle.addEventListener('click', () => this.toggle());
+                this.elements.close.addEventListener('click', () => this.close());
+                this.elements.send.addEventListener('click', () => this.handleSend());
+                this.elements.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.handleSend();
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (this.isOpen && 
+                        !this.elements.window.contains(e.target) && 
+                        !this.elements.toggle.contains(e.target)) {
+                        this.close();
+                    }
+                });
+            },
+
+            toggle() {
+                this.isOpen ? this.close() : this.open();
+            },
+
+            open() {
+                this.isOpen = true;
+                this.elements.window.classList.add('active');
+                this.elements.input.focus();
+                this.scrollToBottom();
+            },
+
+            close() {
+                this.isOpen = false;
+                this.elements.window.classList.remove('active');
+            },
+
+            async handleSend() {
+                const text = this.elements.input.value.trim();
+                if (!text || this.isTyping) return;
+
+                this.addMessage('user', text);
+                this.elements.input.value = '';
+                this.showTyping();
+
+                const response = await this.getAIResponse(text);
+                
+                this.hideTyping();
+                this.addMessage('bot', response);
+            },
+
+            addMessage(sender, text) {
+                const messageEl = document.createElement('div');
+                messageEl.className = `chat-message ${sender}`;
+                
+                const icon = sender === 'bot' ? 'fa-robot' : 'fa-user';
+                const paragraphs = text.split('\n').filter(p => p.trim()).map(p => `<p>${this.escapeHtml(p)}</p>`).join('');
+                
+                messageEl.innerHTML = `
+                    <div class="chat-message-avatar">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                    <div class="chat-message-content">
+                        ${paragraphs}
+                    </div>
+                `;
+                
+                this.elements.messages.appendChild(messageEl);
+                this.scrollToBottom();
+                
+                this.messages.push({ role: sender, content: text, timestamp: Date.now() });
+                this.saveMessages();
+            },
+
+            showTyping() {
+                this.isTyping = true;
+                this.elements.typing.classList.remove('hidden');
+                this.scrollToBottom();
+            },
+
+            hideTyping() {
+                this.isTyping = false;
+                this.elements.typing.classList.add('hidden');
+            },
+
+            async getAIResponse(userMessage) {
+                // If mock mode is enabled, use local responses (for testing/demo)
+                if (this.config.useMockMode) {
+                    return this.getMockResponse(userMessage);
+                }
+
+                // Otherwise, call the secure Netlify function
+                try {
+                    const response = await fetch(this.config.apiEndpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: userMessage,
+                            history: this.messages.slice(-10) // Send last 10 messages for context
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        return data.response;
+                    } else {
+                        console.error('API Error:', data.error);
+                        return 'Sorry, I encountered an error. Please try again later.';
+                    }
+                } catch (error) {
+                    console.error('Network Error:', error);
+                    return 'Sorry, I\'m having trouble connecting to the server. Please check your internet connection or try again later.';
+                }
+            },
+
+            // Mock responses for demo mode
+            async getMockResponse(userMessage) {
+                const startTime = Date.now();
+                const lowerMsg = userMessage.toLowerCase();
+                let response = '';
+
+                const responses = [
+                    {
+                        keywords: ['hello', 'hi', 'hey', 'salam'],
+                        response: 'Hello! Welcome to I Setel Solutions. 🚀\n\nI can help you with:\n• AI consulting services\n• Automation solutions\n• Chatbot development\n• Data extraction APIs\n\nWhat brings you here today?'
+                    },
+                    {
+                        keywords: ['price', 'cost', 'harga', 'pricing', 'quote', 'berapa'],
+                        response: 'Our pricing is customized based on your specific needs. 💼\n\nWe offer:\n• Project-based pricing\n• Monthly retainers\n• Hourly consulting rates\n\nWould you like to schedule a free consultation to discuss your requirements?'
+                    },
+                    {
+                        keywords: ['service', 'services', 'solution', 'solutions', 'bantu', 'boleh'],
+                        response: 'I Setel Solutions specializes in: 🤖\n\n• Agentic AI Workflows\n• LLM Integration & APIs\n• Enterprise Chatbots (RAG)\n• Document Data Extraction\n• Business Process Automation\n\nWhich area are you most interested in?'
+                    },
+                    {
+                        keywords: ['contact', 'email', 'phone', 'hubungi', 'call', 'whatsapp', 'telegram'],
+                        response: 'You can reach us at: 📧\n\nEmail: amer@isetelsolutions.my\nWhatsApp: +60 13-997 2853\nTelegram: @isetelsolutions\nLocation: Klang, Selangor, Malaysia\n\nOr fill out the contact form on our website. We typically respond within 24 hours!'
+                    },
+                    {
+                        keywords: ['chatbot', 'bot', 'ai assistant'],
+                        response: 'Our Enterprise AI Chatbot solution includes: 💬\n\n• RAG-powered responses\n• Multi-language support\n• Integration with your knowledge base\n• Human handoff capabilities\n• Analytics dashboard\n\nPerfect for customer support and internal helpdesks!'
+                    },
+                    {
+                        keywords: ['automation', 'automate', 'workflow'],
+                        response: 'Our Automation Pipeline can help you: ⚡\n\n• Eliminate repetitive manual tasks\n• Connect 300+ tools and services\n• Schedule and trigger workflows\n• Monitor execution in real-time\n• Scale without adding headcount\n\nWhat process would you like to automate?'
+                    },
+                    {
+                        keywords: ['amer', 'founder', 'ceo', 'owner'],
+                        response: 'Amer Aizam is the Founder & AI Solutions Architect at I Setel Solutions. 🎯\n\nHe specializes in:\n• Agentic AI Workflows\n• LLM Integration\n• Enterprise Automation\n\nWith certifications from Anthropic and multiple AI platforms, he leads the technical direction of our solutions.'
+                    }
+                ];
+
+                const match = responses.find(r => r.keywords.some(k => lowerMsg.includes(k)));
+                
+                if (match) {
+                    response = match.response;
+                } else {
+                    response = `Thank you for your message! 🙏\n\nThat's an interesting question about "${userMessage.substring(0, 50)}${userMessage.length > 50 ? '...' : ''}".\n\nLet me connect you with our team for a detailed discussion. Please reach out via WhatsApp (+60 13-997 2853) or email amer@isetelsolutions.my\n\nIs there anything else I can help you with in the meantime?`;
+                }
+
+                // Simulate network delay for realism
+                const elapsed = Date.now() - startTime;
+                const minDelay = 800;
+                if (elapsed < minDelay) {
+                    await this.sleep(minDelay - elapsed);
+                }
+
+                return response;
+            },
+
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            },
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            },
+
+            scrollToBottom() {
+                this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
+            },
+
+            saveMessages() {
+                localStorage.setItem('chatbot_messages', JSON.stringify(this.messages.slice(-20)));
+            },
+
+            loadMessages() {
+                const saved = localStorage.getItem('chatbot_messages');
+                if (saved) {
+                    this.messages = JSON.parse(saved);
+                }
+            }
+        };
+
+        ChatbotWidget.init();
+
+        /* ============================================ */
+        /* AI SOLUTION ESTIMATOR JS - START */
+        /* ============================================ */
+
+        const AIEstimator = {
+            solutions: {
+                'customer-service': {
+                    title: 'Agentic AI Chatbot',
+                    icon: 'fa-robot',
+                    color: 'blue',
+                    badge: 'Most Popular',
+                    description: 'Deploy an intelligent conversational AI that handles customer inquiries 24/7, learns from interactions, and seamlessly escalates complex issues to human agents.',
+                    metrics: [
+                        { value: '80%', label: 'Tickets Automated' },
+                        { value: '3min', label: 'Avg Response Time' },
+                        { value: '65%', label: 'Cost Reduction' },
+                        { value: '24/7', label: 'Availability' }
+                    ],
+                    features: [
+                        'Multi-language support for global customers',
+                        'Integration with existing CRM and helpdesk',
+                        'Sentiment analysis for priority routing',
+                        'Knowledge base auto-learning',
+                        'Seamless human handoff'
+                    ],
+                    tech: ['OpenAI GPT-4', 'Claude', 'RAG', 'FastAPI', 'Redis'],
+                    roiNote: 'ROI typically realized within 3-4 months'
+                },
+                'data-entry': {
+                    title: 'Intelligent Data Extraction',
+                    icon: 'fa-magic',
+                    color: 'green',
+                    badge: 'High ROI',
+                    description: 'Eliminate manual data entry with AI that reads, understands, and processes documents automatically with 99%+ accuracy.',
+                    metrics: [
+                        { value: '99%', label: 'Accuracy Rate' },
+                        { value: '10x', label: 'Faster Processing' },
+                        { value: '90%', label: 'Time Saved' },
+                        { value: '∞', label: 'Scalability' }
+                    ],
+                    features: [
+                        'Extract from PDFs, images, scans',
+                        'Custom schema validation',
+                        'Auto-correction & confidence scoring',
+                        'Batch processing capabilities',
+                        'API for system integration'
+                    ],
+                    tech: ['OCR', 'LLM Vision', 'Python', 'PostgreSQL', 'AWS'],
+                    roiNote: 'Save 40+ hours per week on average'
+                },
+                'inventory': {
+                    title: 'Predictive Inventory AI',
+                    icon: 'fa-brain',
+                    color: 'orange',
+                    badge: 'Smart Forecasting',
+                    description: 'AI-powered demand forecasting and automated reordering to optimize stock levels and prevent stockouts or overstock.',
+                    metrics: [
+                        { value: '35%', label: 'Stock Optimization' },
+                        { value: '50%', label: 'Less Stockouts' },
+                        { value: '25%', label: 'Cost Savings' },
+                        { value: 'Real-time', label: 'Tracking' }
+                    ],
+                    features: [
+                        'Demand forecasting with ML models',
+                        'Automatic reorder point calculation',
+                        'Supplier performance analytics',
+                        'Expiry date tracking & alerts',
+                        'Multi-location synchronization'
+                    ],
+                    tech: ['TensorFlow', 'Python', 'Time Series', 'SQL', 'PowerBI'],
+                    roiNote: 'Typical inventory cost reduction of 20-30%'
+                },
+                'documents': {
+                    title: 'Document Intelligence System',
+                    icon: 'fa-file-invoice',
+                    color: 'purple',
+                    badge: 'Enterprise Ready',
+                    description: 'Automated document processing pipeline that classifies, extracts, and routes documents to the right systems automatically.',
+                    metrics: [
+                        { value: '95%', label: 'Auto-classification' },
+                        { value: '5sec', label: 'Processing Time' },
+                        { value: '70%', label: 'Labor Reduction' },
+                        { value: '100%', label: 'Audit Trail' }
+                    ],
+                    features: [
+                        'Auto-document classification',
+                        'Template-free extraction',
+                        'Workflow automation',
+                        'Compliance & audit logging',
+                        'Integration with DMS/ERP'
+                    ],
+                    tech: ['Claude', 'Document AI', 'Python', 'Node.js', 'MongoDB'],
+                    roiNote: 'Process thousands of documents daily'
+                },
+                'analytics': {
+                    title: 'Auto-Analytics Platform',
+                    icon: 'fa-chart-pie',
+                    color: 'pink',
+                    badge: 'Insights AI',
+                    description: 'Transform raw data into actionable insights automatically. AI generates reports, identifies trends, and alerts on anomalies.',
+                    metrics: [
+                        { value: 'Instant', label: 'Report Generation' },
+                        { value: '24/7', label: 'Monitoring' },
+                        { value: '60%', label: 'Analysis Time Saved' },
+                        { value: 'AI', label: 'Predictions' }
+                    ],
+                    features: [
+                        'Natural language query interface',
+                        'Automated report scheduling',
+                        'Anomaly detection alerts',
+                        'Predictive trend analysis',
+                        'Interactive dashboards'
+                    ],
+                    tech: ['Python', 'Pandas', 'OpenAI', 'Tableau', 'Snowflake'],
+                    roiNote: 'Make data-driven decisions faster'
+                },
+                'scheduling': {
+                    title: 'Smart Scheduler AI',
+                    icon: 'fa-calendar-check',
+                    color: 'cyan',
+                    badge: 'Efficiency Boost',
+                    description: 'AI scheduling assistant that optimizes appointments, manages resources, and coordinates teams automatically.',
+                    metrics: [
+                        { value: '40%', label: 'Scheduling Time Saved' },
+                        { value: 'Zero', label: 'Double Bookings' },
+                        { value: '30%', label: 'Resource Uptime' },
+                        { value: 'Smart', label: 'Reminders' }
+                    ],
+                    features: [
+                        'Auto-conflict resolution',
+                        'Resource optimization',
+                        'Calendar integration (Google/Outlook)',
+                        'Team coordination',
+                        'Client self-booking portal'
+                    ],
+                    tech: ['Node.js', 'Calendar API', 'ML', 'React', 'Firebase'],
+                    roiNote: 'Streamline operations effortlessly'
+                }
+            },
+
+            init() {
+                this.bindEvents();
+            },
+
+            bindEvents() {
+                document.querySelectorAll('.estimator-option').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const value = e.currentTarget.dataset.value;
+                        this.showResult(value);
+                    });
+                });
+
+                document.getElementById('estimator-back')?.addEventListener('click', () => {
+                    this.showStep(1);
+                });
+            },
+
+            showResult(solutionKey) {
+                const solution = this.solutions[solutionKey];
+                if (!solution) return;
+
+                const resultContainer = document.getElementById('estimator-result');
+                
+                const colorMap = {
+                    blue: { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/30' },
+                    green: { bg: 'bg-green-500/20', text: 'text-green-400', border: 'border-green-500/30' },
+                    orange: { bg: 'bg-orange-500/20', text: 'text-orange-400', border: 'border-orange-500/30' },
+                    purple: { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/30' },
+                    pink: { bg: 'bg-pink-500/20', text: 'text-pink-400', border: 'border-pink-500/30' },
+                    cyan: { bg: 'bg-cyan-500/20', text: 'text-cyan-400', border: 'border-cyan-500/30' }
+                };
+                
+                const c = colorMap[solution.color];
+
+                resultContainer.innerHTML = `
+                    <div class="result-header">
+                        <div class="result-icon ${c.bg} ${c.text}">
+                            <i class="fas ${solution.icon}"></i>
+                        </div>
+                        <div class="result-title-group">
+                            <h3>${solution.title}</h3>
+                            <span class="result-badge">
+                                <i class="fas fa-star"></i>
+                                ${solution.badge}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <p class="result-description">${solution.description}</p>
+                    
+                    <div class="result-metrics">
+                        ${solution.metrics.map(m => `
+                            <div class="metric-card">
+                                <div class="metric-value">${m.value}</div>
+                                <div class="metric-label">${m.label}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="result-features">
+                        <h4><i class="fas fa-check-circle"></i> Key Capabilities</h4>
+                        <div class="features-list">
+                            ${solution.features.map(f => `
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>${f}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="result-tech">
+                        ${solution.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                    </div>
+                    
+                    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);">
+                        <p style="color: #22d3ee; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-rocket"></i>
+                            ${solution.roiNote}
+                        </p>
+                    </div>
+                `;
+
+                this.showStep(2);
+            },
+
+            showStep(stepNumber) {
+                document.getElementById('estimator-step-1').classList.toggle('hidden', stepNumber !== 1);
+                document.getElementById('estimator-step-2').classList.toggle('hidden', stepNumber !== 2);
+                
+                document.getElementById('ai-estimator').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        };
+
+        AIEstimator.init();
+
+        /* ============================================ */
+        /* PROJECT TIMELINE JS - START */
+        /* ============================================ */
+
+        const Timeline = {
+            init() {
+                this.observeTimeline();
+            },
+
+            observeTimeline() {
+                const timeline = document.querySelector('.timeline-container');
+                if (!timeline) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.animateTimeline();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                observer.observe(timeline);
+            },
+
+            animateTimeline() {
+                // Animate progress line
+                const progress = document.querySelector('.timeline-progress');
+                if (progress) {
+                    setTimeout(() => {
+                        progress.classList.add('active');
+                    }, 300);
+                }
+
+                // Animate steps
+                const steps = document.querySelectorAll('.timeline-step');
+                steps.forEach((step, index) => {
+                    setTimeout(() => {
+                        step.classList.add('visible');
+                    }, 200 + (index * 150));
+                });
+            }
+        };
+
+        Timeline.init();
+
+        /* ============================================ */
+        /* PROJECT TIMELINE JS - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* FAQ ACCORDION JS - START */
+        /* ============================================ */
+
+        const FAQAccordion = {
+            init() {
+                this.bindEvents();
+            },
+
+            bindEvents() {
+                const questions = document.querySelectorAll('.faq-question');
+                
+                questions.forEach(question => {
+                    question.addEventListener('click', (e) => {
+                        const item = e.currentTarget.closest('.faq-item');
+                        const isActive = item.classList.contains('active');
+                        
+                        // Close all items
+                        document.querySelectorAll('.faq-item').forEach(faq => {
+                            faq.classList.remove('active');
+                        });
+                        
+                        // Open clicked item if it wasn't active
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
+            }
+        };
+
+        FAQAccordion.init();
+
+        /* ============================================ */
+        /* FAQ ACCORDION JS - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* BACKGROUND MUSIC JS - START */
+        /* ============================================ */
+
+        const MusicPlayer = {
+            isPlaying: false,
+            audio: null,
+            btn: null,
+            iconPlay: null,
+            iconPause: null,
+
+            init() {
+                this.audio = document.getElementById('bg-music');
+                this.btn = document.getElementById('music-btn');
+                this.iconPlay = document.getElementById('music-icon-play');
+                this.iconPause = document.getElementById('music-icon-pause');
+
+                if (!this.audio || !this.btn) return;
+
+                this.bindEvents();
+                
+                // Check for saved state
+                const savedState = localStorage.getItem('music-playing');
+                if (savedState === 'true') {
+                    // Don't auto-play due to browser policies, just update UI
+                    this.updateUI(true);
+                }
+            },
+
+            bindEvents() {
+                this.btn.addEventListener('click', () => this.toggle());
+                
+                // Handle audio ended
+                this.audio.addEventListener('ended', () => {
+                    this.isPlaying = false;
+                    this.updateUI(false);
+                });
+
+                // Handle errors
+                this.audio.addEventListener('error', (e) => {
+                    console.error('Audio error:', e);
+                    this.isPlaying = false;
+                    this.updateUI(false);
+                });
+            },
+
+            toggle() {
+                if (this.isPlaying) {
+                    this.pause();
+                } else {
+                    this.play();
+                }
+            },
+
+            async play() {
+                try {
+                    // Check if audio source is set
+                    if (!this.audio.querySelector('source')?.src || 
+                        this.audio.querySelector('source').src === window.location.href) {
+                        alert('Please add your audio file URL in the HTML first!\n\nLook for: <source src="YOUR_AUDIO_URL_HERE" type="audio/mpeg">');
+                        return;
+                    }
+
+                    await this.audio.play();
+                    this.isPlaying = true;
+                    this.updateUI(true);
+                    localStorage.setItem('music-playing', 'true');
+                } catch (error) {
+                    console.error('Playback failed:', error);
+                    alert('Unable to play audio. Please check your audio file URL.');
+                }
+            },
+
+            pause() {
+                this.audio.pause();
+                this.isPlaying = false;
+                this.updateUI(false);
+                localStorage.setItem('music-playing', 'false');
+            },
+
+            updateUI(playing) {
+                if (playing) {
+                    this.btn.classList.add('playing');
+                    this.iconPlay.style.display = 'none';
+                    this.iconPause.style.display = 'block';
+                } else {
+                    this.btn.classList.remove('playing');
+                    this.iconPlay.style.display = 'block';
+                    this.iconPause.style.display = 'none';
+                }
+            }
+        };
+
+        MusicPlayer.init();
+
+        /* ============================================ */
+        /* BACKGROUND MUSIC JS - END */
+        /* ============================================ */
+
+        /* ============================================ */
+        /* END CUSTOM JS */
+        /* ============================================ */
+    </script>
+</body>
+</html>
