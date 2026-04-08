@@ -1628,7 +1628,12 @@
                 </h1>
                 
                 <p class="text-xl md:text-2xl text-gray-400 mb-2">AI Solutions Architect</p>
-                <p class="text-lg text-gray-500 mb-8">Founder of I Setel Solutions (SSM: 202503352257)</p>
+                <p class="text-lg text-gray-500 mb-2">Founder of I Setel Solutions (SSM: 202503352257)</p>
+                <p class="text-base text-cyan-400 mb-8">
+                    <a href="mailto:amer@isetelsolutions.my" class="hover:text-purple-400 transition-colors">
+                        <i class="fas fa-envelope mr-2"></i>amer@isetelsolutions.my
+                    </a>
+                </p>
                 
                 <p class="text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
                     Specializing in Agentic AI Workflows, LLM Integration, and Enterprise Automation. 
@@ -2560,20 +2565,20 @@
                             Please contact us directly at <a href="mailto:support@isetelsolutions.my" class="text-purple-400 hover:underline">support@isetelsolutions.my</a> or drop your info
                         </p>
                         
-                        <form class="space-y-4" data-netlify="true" name="contact">
+                        <form class="space-y-4" name="contact" method="POST" data-netlify="true">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm text-gray-400 mb-2">Full Name</label>
-                                    <input type="text" placeholder="Your Name" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600">
+                                    <input type="text" name="full-name" placeholder="Your Name" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600" required>
                                 </div>
                                 <div>
                                     <label class="block text-sm text-gray-400 mb-2">Email Address</label>
-                                    <input type="email" placeholder="you@example.com" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600">
+                                    <input type="email" name="email" placeholder="you@example.com" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600" required>
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-sm text-gray-400 mb-2">Your Message</label>
-                                <textarea placeholder="Tell me about your project..." rows="4" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 resize-none"></textarea>
+                                <textarea name="message" placeholder="Tell me about your project..." rows="4" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600 resize-none" required></textarea>
                             </div>
                             <p class="text-xs text-gray-500">
                                 I never share your data with anyone else. Pinky promise!
