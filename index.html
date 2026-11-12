@@ -1587,7 +1587,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
+            <a href="#home" class="flex items-center gap-3">
                 <img src="isetel-logo.jpg" alt="I Setel" class="w-10 h-10 rounded-lg object-cover">
                 <div>
                     <span class="text-lg font-bold gradient-text">I Setel Solutions</span>
@@ -3021,9 +3021,29 @@
         });
         
         // Form submission
-        document.querySelector('form').addEventListener('submit', (e) => {
+        // Form submission - posts to Netlify Forms (form name "contact") without leaving the page
+        document.querySelector('form[name="contact"]').addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
+            const form = e.currentTarget;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const data = new URLSearchParams(new FormData(form));
+            if (!data.has('form-name')) data.append('form-name', form.getAttribute('name'));
+            if (submitBtn) submitBtn.disabled = true;
+            try {
+                const res = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: data.toString()
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                form.reset();
+                alert('Thank you for your message! We will get back to you soon.');
+            } catch (error) {
+                console.error('Contact form error:', error);
+                alert('Sorry, your message could not be sent. Please email support@isetelsolutions.my or WhatsApp us instead.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
         });
 
         /* ============================================ */
@@ -3101,11 +3121,15 @@
                 const text = this.elements.input.value.trim();
                 if (!text || this.isTyping) return;
 
+                // Snapshot the conversation BEFORE adding the new message, so the
+                // current message is sent once (as `message`) and not again in `history`.
+                const history = this.buildHistory();
+
                 this.addMessage('user', text);
                 this.elements.input.value = '';
                 this.showTyping();
 
-                const response = await this.getAIResponse(text);
+                const response = await this.getAIResponse(text, history);
                 
                 this.hideTyping();
                 this.addMessage('bot', response);
@@ -3134,6 +3158,20 @@
                 this.saveMessages();
             },
 
+            // Previous turns only, in the shape the serverless function accepts:
+            // roles "user"/"assistant" (the widget stores bot turns as "bot"),
+            // last 10 items, each at most 1000 characters.
+            buildHistory() {
+                return this.messages
+                    .filter(m => m && typeof m.content === 'string' && m.content.trim() &&
+                        (m.role === 'user' || m.role === 'bot' || m.role === 'assistant'))
+                    .slice(-10)
+                    .map(m => ({
+                        role: m.role === 'user' ? 'user' : 'assistant',
+                        content: m.content.slice(0, 1000)
+                    }));
+            },
+
             showTyping() {
                 this.isTyping = true;
                 this.elements.typing.classList.remove('hidden');
@@ -3145,7 +3183,7 @@
                 this.elements.typing.classList.add('hidden');
             },
 
-            async getAIResponse(userMessage) {
+            async getAIResponse(userMessage, history = []) {
                 // If mock mode is enabled, use local responses (for testing/demo)
                 if (this.config.useMockMode) {
                     return this.getMockResponse(userMessage);
@@ -3160,9 +3198,13 @@
                         },
                         body: JSON.stringify({
                             message: userMessage,
-                            history: this.messages.slice(-10) // Send last 10 messages for context
+                            history // previous turns only - excludes the current message
                         })
                     });
+
+                    if (response.status === 429) {
+                        return 'You have sent a lot of messages in a short time. Please wait a few minutes and try again.';
+                    }
 
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -3203,7 +3245,7 @@
                     },
                     {
                         keywords: ['contact', 'email', 'phone', 'hubungi', 'call', 'whatsapp', 'telegram'],
-                        response: 'You can reach us at: 📧\n\nEmail: amer@isetelsolutions.my\nWhatsApp: +60 13-997 2853\nTelegram: @isetelsolutions\nLocation: Klang, Selangor, Malaysia\n\nOr fill out the contact form on our website. We typically respond within 24 hours!'
+                        response: 'You can reach us at: 📧\n\nEmail: support@isetelsolutions.my\nWhatsApp: +60 13-997 2853\nTelegram: @isetelsolutions\nLocation: Klang, Selangor, Malaysia\n\nOr fill out the contact form on our website. We typically respond within 24 hours!'
                     },
                     {
                         keywords: ['chatbot', 'bot', 'ai assistant'],
@@ -3224,7 +3266,7 @@
                 if (match) {
                     response = match.response;
                 } else {
-                    response = `Thank you for your message! 🙏\n\nThat's an interesting question about "${userMessage.substring(0, 50)}${userMessage.length > 50 ? '...' : ''}".\n\nLet me connect you with our team for a detailed discussion. Please reach out via WhatsApp (+60 13-997 2853) or email amer@isetelsolutions.my\n\nIs there anything else I can help you with in the meantime?`;
+                    response = `Thank you for your message! 🙏\n\nThat's an interesting question about "${userMessage.substring(0, 50)}${userMessage.length > 50 ? '...' : ''}".\n\nLet me connect you with our team for a detailed discussion. Please reach out via WhatsApp (+60 13-997 2853) or email support@isetelsolutions.my\n\nIs there anything else I can help you with in the meantime?`;
                 }
 
                 // Simulate network delay for realism
@@ -3252,13 +3294,19 @@
             },
 
             saveMessages() {
-                localStorage.setItem('chatbot_messages', JSON.stringify(this.messages.slice(-20)));
+                try {
+                    localStorage.setItem('chatbot_messages', JSON.stringify(this.messages.slice(-20)));
+                } catch (e) {
+                    // Storage unavailable (private mode / blocked) - chat still works without it
+                }
             },
 
             loadMessages() {
-                const saved = localStorage.getItem('chatbot_messages');
-                if (saved) {
-                    this.messages = JSON.parse(saved);
+                try {
+                    const saved = JSON.parse(localStorage.getItem('chatbot_messages') || '[]');
+                    this.messages = Array.isArray(saved) ? saved : [];
+                } catch (e) {
+                    this.messages = [];
                 }
             }
         };
