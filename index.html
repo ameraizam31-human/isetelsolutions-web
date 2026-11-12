@@ -3214,14 +3214,21 @@
                     
                     if (data.success) {
                         return data.response;
-                    } else {
-                        console.error('API Error:', data.error);
-                        return 'Sorry, I encountered an error. Please try again later.';
                     }
+                    console.error('API Error:', data.error);
+                    return this.unavailableReply();
                 } catch (error) {
-                    console.error('Network Error:', error);
-                    return 'Sorry, I\'m having trouble connecting to the server. Please check your internet connection or try again later.';
+                    console.error('Chat Error:', error);
+                    return this.unavailableReply();
                 }
+            },
+
+            // Shown when the AI backend is down: still give the visitor a way to reach us.
+            unavailableReply() {
+                return 'Maaf, pembantu AI kami tidak dapat dihubungi sekarang. / Sorry, our AI assistant is unavailable right now.\n\n' +
+                    'Hubungi kami terus / Contact us directly:\n' +
+                    '• WhatsApp: +60 13-997 2853\n' +
+                    '• Email: support@isetelsolutions.my';
             },
 
             // Mock responses for demo mode
