@@ -8,6 +8,7 @@ export const links = {
   email: 'mailto:support@isetelsolutions.my',
   tap: 'https://tap.isetelsolutions.my',
   susunjalan: 'https://susunjalan.isetelsolutions.my',
+  aether: 'https://aether.isetelsolutions.my',
   linkedin: 'https://www.linkedin.com/in/amer-aizam-ai/',
   github: 'https://github.com/ameraizam31-human',
   telegram: 'https://t.me/isetelsolutions',
@@ -85,7 +86,7 @@ export const copy = {
       aether: {
         tagline: 'An algae-based bioreactor project.',
         body: 'Early-stage research. A founding team of four covers bioprocess engineering, enzyme biotechnology, lab operations and safety. Lab work begins once funding is in place, and the plan is to move Aether into its own Sdn. Bhd. Nothing is proven yet.',
-        cta: 'Ask about Aether',
+        cta: 'Visit the Aether site',
         mailSubject: 'Project Aether',
       },
     },
@@ -167,7 +168,7 @@ export const copy = {
       aether: {
         tagline: 'Projek bioreaktor berasaskan alga.',
         body: 'Penyelidikan peringkat awal. Pasukan pengasas empat orang meliputi kejuruteraan bioproses, bioteknologi enzim, operasi makmal dan keselamatan. Kerja makmal bermula selepas pembiayaan diperoleh, dan rancangannya Aether akan dipindahkan ke Sdn. Bhd. sendiri. Belum ada apa-apa yang terbukti.',
-        cta: 'Tanya tentang Aether',
+        cta: 'Lawat laman Aether',
         mailSubject: 'Project Aether',
       },
     },
