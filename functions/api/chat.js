@@ -281,7 +281,14 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    return json(200, headers, { success: true, response: reply.trim() });
+    // Widget memaparkan teks biasa: buang tanda markdown yang model masih kadang guna.
+    const plain = reply
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/__(.+?)__/g, '$1')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .trim();
+    return json(200, headers, { success: true, response: plain });
   } catch (error) {
     console.error('Chat function error:', error && error.message ? error.message : error);
     return json(500, headers, {
