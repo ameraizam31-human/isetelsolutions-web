@@ -57,3 +57,9 @@ Komponen pihak ketiga (kod sumber disalin, bukan pakej):
 - shadcn/ui: corak `Button` (`src/components/ui/button.tsx`).
 
 Video hero: letak `static/media/hero-loop.mp4`. Tanpa fail itu, hero memaparkan gambar pegun sahaja.
+
+## Laman Project Aether
+
+Kod dalam `aether/`, konfigurasi `astro.aether.config.mjs`, hasil binaan dalam `aether-public/`
+(dihidang oleh projek Cloudflare Pages berasingan untuk `aether.isetelsolutions.my`).
+Bina: `npm run build:aether`. Video hero: `aether/static/media/hero-loop.mp4`.
