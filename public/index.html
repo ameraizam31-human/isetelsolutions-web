@@ -3193,7 +3193,7 @@
                     return this.getMockResponse(userMessage);
                 }
 
-                // Otherwise, call the secure Netlify function
+                // Otherwise, call the server-side proxy (/api/chat)
                 try {
                     const response = await fetch(this.config.apiEndpoint, {
                         method: 'POST',
