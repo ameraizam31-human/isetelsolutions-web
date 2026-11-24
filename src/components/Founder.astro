@@ -1,0 +1,76 @@
+---
+import { ButtonLink } from '@/components/ui/button';
+import { links, type Lang } from '@/i18n/copy';
+import { more, moreLinks } from '@/i18n/more';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const f = more[lang].founder;
+---
+
+<div class="shell grid gap-x-16 gap-y-12 border-t border-line pt-16 pb-20 md:grid-cols-12 md:pt-20 md:pb-28">
+  <div class="md:col-span-5">
+    <h2 class="heading text-[clamp(1.75rem,3.4vw,2.5rem)]">{f.title}</h2>
+    <div class="mt-8 flex items-center gap-4">
+      <img
+        src="/media/amer.webp"
+        alt={f.photoAlt}
+        width="320"
+        height="320"
+        loading="lazy"
+        decoding="async"
+        class="size-18 rounded-full object-cover"
+      />
+      <div>
+        <p class="heading text-xl">{f.name}</p>
+        <p class="text-slate">{f.role}</p>
+      </div>
+    </div>
+    <p class="mt-6 max-w-[30rem] text-slate">{f.bio}</p>
+    <div class="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+      <ButtonLink href={links.linkedin} variant="quiet" size="bare" rel="me noopener">LinkedIn</ButtonLink>
+      <ButtonLink href={links.github} variant="quiet" size="bare" rel="me noopener">GitHub</ButtonLink>
+    </div>
+
+    <h3 class="label mt-12 text-base text-navy">{f.codeTitle}</h3>
+    <ul class="mt-4 space-y-4">
+      {
+        f.repos.map((r) => (
+          <li>
+            <a
+              href={moreLinks.repo(r.name)}
+              class="label text-base break-words text-steel-deep underline decoration-line decoration-2 underline-offset-4 hover:decoration-steel"
+            >
+              {r.name}
+            </a>
+            <p class="mt-1 text-[0.9375rem] text-slate">{r.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-5">
+      <ButtonLink href={links.github} variant="quiet" size="bare">{f.githubCta}</ButtonLink>
+    </div>
+  </div>
+
+  <div class="md:col-span-7">
+    <h3 class="label text-base text-navy">{f.certsTitle}</h3>
+    <p class="mt-1 text-[0.9375rem] text-slate">{f.certsNote}</p>
+    <ul class="mt-6 border-t border-line">
+      {
+        f.groups.map((g) => (
+          <li class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-1 border-b border-line py-5">
+            <p class="label text-base text-navy">{g.issuer}</p>
+            <p class="heading text-2xl text-steel">{g.count}</p>
+            <p class="col-span-2 max-w-[36rem] text-[0.9375rem] text-slate">{g.items}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-7">
+      <ButtonLink href={moreLinks.linkedinCerts} variant="outline">{f.certsCta}</ButtonLink>
+    </div>
+  </div>
+</div>

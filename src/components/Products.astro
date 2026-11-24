@@ -1,0 +1,106 @@
+---
+import TapCard from '@/components/TapCard';
+import { ButtonLink } from '@/components/ui/button';
+import { copy, links, waLink, type Lang } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = copy[lang].products;
+---
+
+<section id="products" class="pt-14 pb-20 md:pt-10 md:pb-28">
+  <div class="shell">
+    <div class="max-w-[40rem]">
+      <h2 class="heading text-[clamp(2rem,4.4vw,3.25rem)]">{t.title}</h2>
+      <p class="mt-4 text-lg text-slate">{t.lead}</p>
+    </div>
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-12">
+      <!-- tap. -->
+      <article
+        class="grid gap-8 rounded-[var(--radius-card)] bg-paper p-6 shadow-[var(--shadow-lift)] sm:grid-cols-2 sm:p-8 lg:col-span-7"
+      >
+        <div class="flex flex-col">
+          <p class="label flex items-center gap-2.5 text-slate">
+            <span class="lamp" data-state="live"></span>{t.live}
+          </p>
+          <h3 class="heading mt-4 text-4xl md:text-5xl">tap.</h3>
+          <p class="label mt-2 text-base text-steel-deep">{t.tap.tagline}</p>
+          <p class="mt-5 text-slate">{t.tap.body}</p>
+          <ul class="label mt-6 flex flex-wrap gap-2 text-navy">
+            {t.tap.facts.map((f) => <li class="rounded-full border border-line bg-white/70 px-3 py-1.5">{f}</li>)}
+          </ul>
+          <div class="mt-auto pt-8">
+            <ButtonLink href={links.tap} variant="accent">{t.tap.cta}</ButtonLink>
+          </div>
+        </div>
+        <div class="self-center max-sm:mx-auto max-sm:max-w-xs">
+          <TapCard client:visible alt={t.tap.imageAlt} chip={t.tap.price} />
+        </div>
+      </article>
+
+      <!-- SusunJalan -->
+      <article
+        class="relative flex flex-col overflow-hidden rounded-[var(--radius-card)] bg-white p-6 shadow-[var(--shadow-lift)] sm:p-8 lg:col-span-5"
+      >
+        <p class="label flex items-center gap-2.5 text-slate">
+          <span class="lamp" data-state="live"></span>{t.live}
+        </p>
+        <h3 class="heading mt-4 text-4xl md:text-5xl">SusunJalan</h3>
+        <p class="label mt-2 text-base text-steel-deep">{t.susunjalan.tagline}</p>
+        <p class="mt-5 text-slate">{t.susunjalan.body}</p>
+        <ul class="label mt-6 flex flex-wrap gap-2 text-navy">
+          {t.susunjalan.facts.map((f) => <li class="rounded-full border border-line bg-mist px-3 py-1.5">{f}</li>)}
+        </ul>
+        <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <ButtonLink href={links.susunjalan} variant="accent">{t.susunjalan.cta}</ButtonLink>
+          <ButtonLink
+            href={waLink(t.susunjalan.testerWa)}
+            target="_blank"
+            rel="noopener"
+            variant="quiet"
+            size="bare">{t.susunjalan.testerCta}</ButtonLink
+          >
+        </div>
+        <p class="mt-4 text-[0.9375rem] text-slate">{t.susunjalan.tester}</p>
+        <div
+          class="-mx-6 mt-8 -mb-6 max-h-64 overflow-hidden border-t border-line [mask-image:linear-gradient(to_bottom,#000_55%,transparent)] sm:-mx-8 sm:-mb-8"
+        >
+          <img
+            src="/media/susunjalan-turutan.webp"
+            alt={t.susunjalan.imageAlt}
+            width="720"
+            height="843"
+            loading="lazy"
+            decoding="async"
+            class="mx-auto w-full max-w-sm"
+          />
+        </div>
+      </article>
+
+      <!-- Aether: garis putus-putus kerana belum wujud sebagai produk -->
+      <article
+        class="grid gap-x-12 gap-y-6 rounded-[var(--radius-card)] border-2 border-dashed border-line p-6 sm:p-8 md:grid-cols-12 lg:col-span-12"
+      >
+        <div class="md:col-span-5">
+          <p class="label flex items-center gap-2.5 text-slate">
+            <span class="lamp" data-state="rnd"></span>{t.rnd}
+          </p>
+          <h3 class="heading mt-4 text-4xl md:text-5xl">Aether</h3>
+          <p class="label mt-2 text-base text-steel-deep">{t.aether.tagline}</p>
+        </div>
+        <div class="md:col-span-7">
+          <p class="max-w-[38rem] text-slate">{t.aether.body}</p>
+          <div class="mt-6">
+            <ButtonLink
+              href={`${links.email}?subject=${encodeURIComponent(t.aether.mailSubject)}`}
+              variant="outline">{t.aether.cta}</ButtonLink
+            >
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

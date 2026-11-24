@@ -1,0 +1,70 @@
+---
+import TracingBeam from '@/components/ui/tracing-beam';
+import { ButtonLink } from '@/components/ui/button';
+import { waLink, type Lang } from '@/i18n/copy';
+import { more } from '@/i18n/more';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = more[lang].services;
+const p = more[lang].process;
+---
+
+<section id="services" class="bg-white">
+  <div class="shell grid gap-x-16 gap-y-10 py-20 md:grid-cols-12 md:py-28">
+    <div class="md:col-span-4">
+      <div class="md:sticky md:top-28">
+        <h2 class="heading text-[clamp(2rem,4.4vw,3.25rem)]">{s.title}</h2>
+        <p class="mt-5 text-lg text-slate">{s.lead}</p>
+        <div class="mt-8">
+          <ButtonLink href={waLink(s.waText)} target="_blank" rel="noopener" variant="accent">{s.cta}</ButtonLink>
+        </div>
+      </div>
+    </div>
+    <ul class="border-t border-line md:col-span-8">
+      {
+        s.items.map((item) => (
+          <li class="grid gap-x-8 gap-y-2 border-b border-line py-6 sm:grid-cols-5">
+            <h3 class="heading text-xl sm:col-span-2">{item.name}</h3>
+            <div class="sm:col-span-3">
+              <p class="text-slate">{item.body}</p>
+              <p class="mt-2 text-[0.9375rem] text-slate/80">
+                {s.stackLabel}: <span class="text-navy">{item.stack}</span>
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="border-t border-line bg-mist">
+    <div class="shell grid gap-x-16 gap-y-10 py-20 md:grid-cols-12 md:py-28">
+      <div class="md:col-span-4">
+        <h2 class="heading text-[clamp(2rem,4.4vw,3.25rem)]">{p.title}</h2>
+        <p class="mt-5 text-lg text-slate">{p.lead}</p>
+      </div>
+      <div class="md:col-span-8">
+        <TracingBeam client:visible>
+          <ol class="space-y-10">
+            {
+              p.steps.map((step, i) => (
+                <li class="grid gap-x-6 gap-y-1 sm:grid-cols-[3.5rem_1fr]">
+                  <span class="display text-4xl text-steel" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 class="heading text-2xl">{step.name}</h3>
+                    <p class="mt-2 max-w-[34rem] text-slate">{step.body}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </TracingBeam>
+      </div>
+    </div>
+  </div>
+</section>

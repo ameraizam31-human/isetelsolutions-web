@@ -1,0 +1,115 @@
+---
+import fs from 'node:fs';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+import { ButtonLink } from '@/components/ui/button';
+import { copy, waLink, type Lang } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = copy[lang].hero;
+
+// Video gelung hanya dipaparkan jika failnya wujud dalam static/media/.
+const hasVideo = fs.existsSync('static/media/hero-loop.mp4');
+
+// Telefon: gambar duduk di bawah teks (tiada tindihan). Skrin lebar: gambar penuh di belakang teks.
+const media = 'h-full w-full object-cover object-[90%_100%] md:object-[70%_60%]';
+---
+
+<section class="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+  <div class="shell relative z-10 flex flex-1 flex-col pt-28 pb-4 md:justify-center md:pt-36 md:pb-24">
+    <div class="max-w-[46rem]">
+      <TextGenerateEffect
+        client:load
+        words={t.title}
+        className="display text-[clamp(2.5rem,8.4vw,6.25rem)] text-navy"
+      />
+      <p class="mt-6 max-w-[34rem] text-lg text-slate md:mt-7 md:text-xl">{t.lead}</p>
+      <div class="mt-8 flex flex-wrap items-center gap-3 md:mt-9">
+        <ButtonLink href="#products" size="lg" className="max-sm:h-12 max-sm:px-5 max-sm:text-[0.9375rem]"
+          >{t.primary}</ButtonLink
+        >
+        <ButtonLink
+          href={waLink(t.waText)}
+          target="_blank"
+          rel="noopener"
+          variant="outline"
+          size="lg"
+          className="max-sm:h-12 max-sm:px-5 max-sm:text-[0.9375rem]">{t.secondary}</ButtonLink
+        >
+      </div>
+    </div>
+
+    <ul aria-label={t.statusLabel} class="label mt-10 flex flex-wrap gap-x-7 gap-y-3 text-slate md:mt-20">
+      {
+        t.status.map((s) => (
+          <li class="flex items-center gap-2.5">
+            <span class="lamp" data-state={s.state} />
+            <span>
+              <span class="text-navy">{s.name}</span> {s.label}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="relative -mt-6 h-[44svh] min-h-72 md:absolute md:inset-0 md:-z-10 md:mt-0 md:h-auto">
+    <picture>
+      <source srcset="/media/hero-poster.webp" type="image/webp" />
+      <img
+        src="/media/hero-poster.jpg"
+        alt={t.imageAlt}
+        width="1376"
+        height="768"
+        fetchpriority="high"
+        decoding="async"
+        class={media}
+      />
+    </picture>
+    {
+      hasVideo && (
+        <video
+          id="hero-loop"
+          class:list={['absolute inset-0 opacity-0 transition-opacity duration-1000', media]}
+          data-src="/media/hero-loop.mp4"
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-hidden="true"
+          tabindex="-1"
+        />
+      )
+    }
+    <div class="hero-light" aria-hidden="true"></div>
+    <div class="hero-veil" aria-hidden="true"></div>
+  </div>
+</section>
+
+<script is:inline>
+  // Video hero: hanya dimuat selepas halaman siap, dan tidak dimainkan
+  // untuk reduced motion atau mod jimat data. Jika tiada video, poster kekal.
+  (function () {
+    var v = document.getElementById('hero-loop');
+    if (!v) return;
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var saver = navigator.connection && navigator.connection.saveData;
+    if (calm || saver) return;
+    function start() {
+      v.src = v.dataset.src;
+      v.addEventListener(
+        'playing',
+        function () {
+          v.style.opacity = '1';
+        },
+        { once: true },
+      );
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+  })();
+</script>

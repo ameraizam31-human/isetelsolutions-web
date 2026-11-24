@@ -1,0 +1,42 @@
+---
+import '@/styles/global.css';
+import type { Lang } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+const { lang, title, description } = Astro.props;
+const site = 'https://isetelsolutions.my';
+const canonical = site + (lang === 'ms' ? '/ms/' : '/');
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={site + '/'} />
+    <link rel="alternate" hreflang="ms" href={site + '/ms/'} />
+    <link rel="alternate" hreflang="x-default" href={site + '/'} />
+    <meta name="theme-color" content="#eef3f8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/media/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="I Setel Solutions" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={site + '/assets/og-image.jpg'} />
+    <meta property="og:locale" content={lang === 'ms' ? 'ms_MY' : 'en_MY'} />
+    <link rel="preload" as="image" href="/media/hero-poster.webp" type="image/webp" fetchpriority="high" />
+    <noscript><style>.tge-word{opacity:1!important;filter:none!important}</style></noscript>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

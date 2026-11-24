@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
+
+/* Token reka bentuk I Setel. Tukar di sini sahaja. */
+@theme {
+  --color-mist: #eef3f8; /* latar utama, biru pucat */
+  --color-paper: #fbf8f2; /* putih hangat untuk kad */
+  --color-steel: #2f6fb3; /* aksen utama */
+  --color-steel-deep: #245a94;
+  --color-navy: #14204a; /* teks, bahagian gelap */
+  --color-slate: #46557a; /* teks kedua */
+  --color-line: #c9d6e4; /* garis halus */
+  --color-signal: #f08a24; /* lampu status sahaja */
+
+  --font-sans: 'Archivo Variable', 'Archivo', ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --radius-media: 0.75rem;
+
+  --shadow-lift: 0 1px 0 rgb(255 255 255 / 0.7) inset, 0 18px 40px -24px rgb(20 32 74 / 0.35);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-mist);
+    color: var(--color-navy);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    font-variation-settings: 'wdth' 100;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-steel);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-steel);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Tajuk: Archivo dikembangkan, supaya ada rasa jentera. */
+  .display {
+    font-variation-settings: 'wdth' 118;
+    font-weight: 620;
+    letter-spacing: -0.025em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+  .heading {
+    font-variation-settings: 'wdth' 112;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .label {
+    font-variation-settings: 'wdth' 108;
+    font-weight: 560;
+    font-size: 0.875rem;
+    letter-spacing: 0;
+  }
+  .shell {
+    width: min(100% - 2.5rem, 76rem);
+    margin-inline: auto;
+  }
+
+  /* Lampu status: menyala = produk live, kosong = belum. */
+  .lamp {
+    position: relative;
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-signal);
+    box-shadow: 0 0 0 3px rgb(240 138 36 / 0.18);
+    flex: none;
+  }
+  .lamp[data-state='rnd'] {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px var(--color-slate);
+  }
+
+  /* Hero */
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgb(238 243 248 / 0) 80%, var(--color-mist) 100%),
+      linear-gradient(100deg, rgb(238 243 248 / 0.92) 0%, rgb(238 243 248 / 0.72) 34%, rgb(238 243 248 / 0) 62%);
+  }
+  .hero-light {
+    position: absolute;
+    inset: -20% -10%;
+    background: radial-gradient(38% 46% at 50% 50%, rgb(255 250 240 / 0.5), rgb(255 250 240 / 0) 70%);
+    mix-blend-mode: soft-light;
+    animation: drift 26s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(-14%, -4%, 0);
+    }
+    to {
+      transform: translate3d(22%, 6%, 0);
+    }
+  }
+  @media (max-width: 767px) {
+    .hero-veil {
+      background:
+        linear-gradient(to bottom, rgb(238 243 248 / 0) 86%, var(--color-mist) 100%),
+        linear-gradient(to bottom, var(--color-mist) 0%, rgb(238 243 248 / 0.7) 18%, rgb(238 243 248 / 0) 46%);
+    }
+  }
+
+  /* Kesan teks hero (Aceternity). Jika JS lambat, teks tetap muncul selepas 2.5s. */
+  .tge-word {
+    animation: tge-safety 0.01s linear 2.5s forwards;
+  }
+  @keyframes tge-safety {
+    to {
+      opacity: 1;
+      filter: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-light {
+    animation: none;
+  }
+  .tge-word {
+    opacity: 1 !important;
+    filter: none !important;
+    animation: none;
+  }
+}

@@ -33,3 +33,27 @@ penyimpanan data borang.
 
 `public/pautan/index.html`: satu pautan tetap untuk bio TikTok, Facebook dan lain-lain.
 Bila kempen bertukar, ubah susunan kad dalam fail ini; pautan dalam profil tidak perlu ditukar.
+
+## Laman baharu (cawangan `laman-baharu`)
+
+Astro + React + Tailwind. English di `/`, BM di `/ms/`.
+
+| Folder | Isi |
+| --- | --- |
+| `src/` | Kod sumber. Teks laman dalam `src/i18n/copy.ts`, warna dan tulisan dalam `src/styles/global.css`. |
+| `static/` | Fail yang disalin terus: `pautan/`, `_headers`, `media/` (gambar, video hero). |
+| `public/` | Hasil binaan. Inilah yang dihidang Cloudflare Pages. |
+| `functions/` | Pages Functions (`/api/chat`). |
+
+Bina: `npm install`, kemudian `npm run build` (menulis ke `public/`).
+
+Buat masa ini `public/` di-commit kerana projek Pages belum ada arahan bina.
+Bila arahan bina `npm run build` ditetapkan dalam Cloudflare (direktori output kekal `public`),
+masukkan `public/` ke dalam `.gitignore` dan buang daripada git.
+
+Komponen pihak ketiga (kod sumber disalin, bukan pakej):
+- Aceternity UI: `text-generate-effect`, `3d-card`, `tracing-beam` (`src/components/ui/`).
+- Tubelight Navbar (Serenity UI, MIT; disenaraikan di 21st.dev): asas pil nav dalam `src/components/SiteNav.tsx`.
+- shadcn/ui: corak `Button` (`src/components/ui/button.tsx`).
+
+Video hero: letak `static/media/hero-loop.mp4`. Tanpa fail itu, hero memaparkan gambar pegun sahaja.

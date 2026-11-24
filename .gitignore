@@ -1,3 +1,2 @@
-.playwright-mcp/
 node_modules/
-.netlify/
+.astro/

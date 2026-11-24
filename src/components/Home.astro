@@ -1,0 +1,52 @@
+---
+import Base from '@/layouts/Base.astro';
+import SiteNav from '@/components/SiteNav';
+import Hero from '@/components/Hero.astro';
+import About from '@/components/About.astro';
+import Products from '@/components/Products.astro';
+import Contact from '@/components/Contact.astro';
+import Services from '@/components/Services.astro';
+import Faq from '@/components/Faq.astro';
+import ChatWidget from '@/components/ChatWidget';
+import { more } from '@/i18n/more';
+import { copy, waLink, type Lang } from '@/i18n/copy';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = copy[lang];
+const m = more[lang];
+const items = [
+  { id: 'products', name: t.nav.products, icon: 'box' as const },
+  { id: 'services', name: m.nav.services, icon: 'gear' as const },
+  { id: 'about', name: t.nav.about, icon: 'spark' as const },
+  { id: 'faq', name: m.nav.faq, icon: 'help' as const },
+  { id: 'contact', name: t.nav.contact, icon: 'chat' as const },
+];
+---
+
+<Base lang={lang} title={t.meta.title} description={t.meta.description}>
+  <a
+    href="#main"
+    class="label sr-only rounded-full bg-navy px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
+    >{t.nav.skip}</a
+  >
+  <SiteNav
+    client:load
+    items={items}
+    lang={lang}
+    whatsappHref={waLink(t.hero.waText)}
+    whatsappLabel={t.nav.whatsapp}
+    langLabel={t.nav.langLabel}
+  />
+  <main id="main">
+    <Hero lang={lang} />
+    <Products lang={lang} />
+    <Services lang={lang} />
+    <About lang={lang} />
+    <Faq lang={lang} />
+  </main>
+  <Contact lang={lang} />
+  <ChatWidget client:idle labels={m.chat} whatsappHref={waLink(t.hero.waText)} />
+</Base>

@@ -1,0 +1,45 @@
+---
+import { type Lang } from '@/i18n/copy';
+import { more } from '@/i18n/more';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const f = more[lang].faq;
+---
+
+<section id="faq" class="py-20 md:py-28">
+  <div class="shell grid gap-x-16 gap-y-10 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <h2 class="heading text-[clamp(2rem,4.4vw,3.25rem)]">{f.title}</h2>
+      <dl class="mt-9 border-t border-line">
+        {
+          f.prices.map((p) => (
+            <div class="flex items-baseline justify-between gap-6 border-b border-line py-4">
+              <dt class="text-slate">{p.k}</dt>
+              <dd class="heading text-xl text-navy">{p.v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-4 text-[0.9375rem] text-slate">{f.priceNote}</p>
+    </div>
+    <div class="md:col-span-7">
+      {
+        f.items.map((item, i) => (
+          <details class="faq group border-b border-line first:border-t" open={i === 0}>
+            <summary class="heading flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-xl [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <span
+                class="relative size-5 flex-none text-steel before:absolute before:top-1/2 before:left-0 before:h-0.5 before:w-full before:-translate-y-1/2 before:bg-current after:absolute after:top-0 after:left-1/2 after:h-full after:w-0.5 after:-translate-x-1/2 after:bg-current after:transition-transform after:duration-200 group-open:after:rotate-90"
+                aria-hidden="true"
+              />
+            </summary>
+            <p class="max-w-[40rem] pb-6 text-slate">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
