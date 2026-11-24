@@ -4,13 +4,15 @@
 // best-effort per-IP rate limit, generic error messages (upstream details are logged, never returned).
 
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL = 'llama-3.3-70b-versatile';
+// llama-3.3-70b-versatile ditutup oleh Groq pada 16 Ogos 2026; pengganti yang disyorkan Groq.
+const MODEL = 'openai/gpt-oss-120b';
 
 const MAX_MESSAGE_CHARS = 1000;
 const MAX_HISTORY_ITEMS = 10;
 const MAX_HISTORY_CHARS = 1000;
 const MAX_BODY_BYTES = 32 * 1024;
-const MAX_TOKENS = 500;
+// Model ini berfikir dahulu (reasoning) dan token itu dikira dalam had, jadi had lebih tinggi.
+const MAX_TOKENS = 1200;
 const UPSTREAM_TIMEOUT_MS = 8000;
 
 // ---------------------------------------------------------------------------
@@ -238,7 +240,9 @@ export async function onRequestPost({ request, env }) {
             { role: 'user', content: parsed.message }
           ],
           temperature: 0.4,
-          max_tokens: MAX_TOKENS,
+          max_completion_tokens: MAX_TOKENS,
+          reasoning_effort: 'low',
+          include_reasoning: false,
           top_p: 0.9,
           stream: false
         }),
