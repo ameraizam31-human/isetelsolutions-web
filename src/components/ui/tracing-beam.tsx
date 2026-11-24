@@ -5,7 +5,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useTransform, useScroll, useSpring } from 'motion/react';
 import { cn } from '@/lib/utils';
 
-export const TracingBeam = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const TracingBeam = ({
+  children,
+  className,
+  colors = ['#2f6fb3', '#14204a', '#f08a24'],
+}: {
+  children: React.ReactNode;
+  className?: string;
+  colors?: [string, string, string];
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -59,10 +67,10 @@ export const TracingBeam = ({ children, className }: { children: React.ReactNode
           />
           <defs>
             <motion.linearGradient id="beam" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1={y1} y2={y2}>
-              <stop stopColor="#2f6fb3" stopOpacity="0" />
-              <stop stopColor="#2f6fb3" />
-              <stop offset="0.325" stopColor="#14204a" />
-              <stop offset="1" stopColor="#f08a24" stopOpacity="0" />
+              <stop stopColor={colors[0]} stopOpacity="0" />
+              <stop stopColor={colors[0]} />
+              <stop offset="0.325" stopColor={colors[1]} />
+              <stop offset="1" stopColor={colors[2]} stopOpacity="0" />
             </motion.linearGradient>
           </defs>
         </svg>

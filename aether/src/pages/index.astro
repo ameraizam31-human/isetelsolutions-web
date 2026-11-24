@@ -1,0 +1,364 @@
+---
+// Laman Project Aether. English sahaja; pembaca: pelabur angel dan penilai geran.
+// Peraturan kandungan: hanya fakta yang sudah umum, tiada dakwaan yang belum terbukti,
+// tiada nama geran, tiada angka pembiayaan.
+import fs from 'node:fs';
+import '../styles/aether.css';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+import TracingBeam from '@/components/ui/tracing-beam';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const isPreview = base !== '/';
+const hasVideo = fs.existsSync('aether/static/media/hero-loop.mp4');
+
+const site = 'https://aether.isetelsolutions.my';
+const title = 'Project Aether | An algae bioreactor, at the starting line';
+const description =
+  'Project Aether is early-stage R&D from Malaysia exploring a modular, algae-based bioreactor. The founding team is in place. Lab work begins when funding does.';
+const mail = 'mailto:support@isetelsolutions.my?subject=' + encodeURIComponent('Project Aether');
+const wa =
+  'https://wa.me/60139972853?text=' + encodeURIComponent('Hi, I would like to talk about Project Aether.');
+
+const status = [
+  {
+    k: 'Founding team',
+    state: 'on',
+    v: 'In place',
+    body: 'Five people across bioprocess engineering, enzyme biotechnology, lab operations, safety and systems.',
+  },
+  {
+    k: 'Funding',
+    state: 'half',
+    v: 'In progress',
+    body: 'Grant applications are in progress, and we are open to early angel investment.',
+  },
+  { k: 'Lab work', state: 'off', v: 'Not started', body: 'It begins once funding is in place.' },
+  {
+    k: 'Evidence',
+    state: 'off',
+    v: 'None yet',
+    body: 'No data and no results so far. The first lab phase exists to produce them.',
+  },
+  {
+    k: 'Company',
+    state: 'off',
+    v: 'Planned',
+    body: 'Today Aether sits under I Setel Solutions, a sole proprietorship. The plan is a dedicated Sdn. Bhd. for Aether.',
+  },
+];
+
+const team = [
+  { name: 'Amer Aizam', role: 'Founder', body: 'Systems and product. Founder of I Setel Solutions.' },
+  {
+    name: 'Dr. Faezah',
+    role: 'Bioprocess and scale-up',
+    body: 'PhD in Chemical Engineering. Former research scientist, with work on algae oil production.',
+  },
+  {
+    name: 'Dr. Ameera',
+    role: 'Biotechnology and wet lab',
+    body: 'PhD in Enzyme Biotechnology. Lecturer and published researcher.',
+  },
+  {
+    name: 'Zahid',
+    role: 'Lab operations and instruments',
+    body: 'Medical laboratory technologist. Lab quality control and instrument upkeep.',
+  },
+  {
+    name: 'Fasehah',
+    role: 'Safety, health and environment',
+    body: 'Safety, health and environment executive in manufacturing.',
+  },
+];
+
+const steps = [
+  { name: 'Lab work begins', body: 'The team starts bench work on the bioreactor.' },
+  {
+    name: 'First evidence',
+    body: 'Data that shows whether the approach holds, reported plainly whichever way it goes.',
+  },
+  {
+    name: 'A company for Aether',
+    body: 'A dedicated Sdn. Bhd., with the founding team and their roles set out properly.',
+  },
+  {
+    name: 'Pilots and partners',
+    body: 'Pilot sites, lab partners and further R&D programmes, once there is evidence to build on.',
+  },
+];
+
+const wanted = [
+  {
+    name: 'Angel investors',
+    body: 'Who are comfortable coming in before the evidence exists, and want to see it produced properly.',
+  },
+  { name: 'Grant and R&D programmes', body: 'That fund early-stage deep-tech and climate research in Malaysia.' },
+  {
+    name: 'Labs, hatcheries and bioprocess teams',
+    body: 'Who can open a lab bench, a pilot site or an introduction.',
+  },
+];
+
+const media = 'absolute inset-0 h-full w-full object-cover object-[78%_50%]';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={site + '/'} />
+    <meta name="theme-color" content="#0d3a2c" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Project Aether" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={site + '/'} />
+    <meta property="og:image" content={site + '/media/og-image.jpg'} />
+    <link rel="preload" as="image" href={`${base}media/hero-poster.webp`} type="image/webp" fetchpriority="high" />
+    <noscript><style>.tge-word{opacity:1!important;filter:none!important}</style></noscript>
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="label sr-only rounded-full bg-lime px-4 py-2 text-deep focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+      >Skip to content</a
+    >
+
+    <header class="hero relative isolate flex min-h-[92svh] flex-col overflow-hidden bg-deep text-foam">
+      <div class="absolute inset-0 -z-10">
+        <picture>
+          <source srcset={`${base}media/hero-poster.webp`} type="image/webp" />
+          <img
+            src={`${base}media/hero-poster.jpg`}
+            alt=""
+            width="1308"
+            height="730"
+            fetchpriority="high"
+            decoding="async"
+            class={media}
+          />
+        </picture>
+        {
+          hasVideo && (
+            <video
+              id="hero-loop"
+              class:list={['opacity-0 transition-opacity duration-1000', media]}
+              data-src={`${base}media/hero-loop.mp4`}
+              muted
+              loop
+              playsinline
+              preload="none"
+              aria-hidden="true"
+              tabindex="-1"
+            />
+          )
+        }
+        <div class="hero-veil" aria-hidden="true"></div>
+      </div>
+
+      <nav aria-label="Main" class="shell flex items-center justify-between gap-6 pt-6">
+        <a href="#main" class="flex items-baseline gap-2.5">
+          <span class="heading text-3xl">Aether</span>
+          <span class="text-sm text-foam/70 max-sm:hidden">by I Setel Solutions</span>
+        </a>
+        <div class="flex items-center gap-7">
+          <a href="#status" class="label text-foam/85 hover:text-foam max-md:hidden">Status</a>
+          <a href="#team" class="label text-foam/85 hover:text-foam max-md:hidden">Team</a>
+          <a href="#funding" class="label text-foam/85 hover:text-foam max-md:hidden">Funding</a>
+          <a href="#contact" class="btn btn-lime h-11 px-5">Get in touch</a>
+        </div>
+      </nav>
+
+      <div class="shell flex flex-1 flex-col justify-center py-16">
+        <p class="label flex items-center gap-2.5 text-foam/85">
+          <span class="lamp" data-state="half"></span>Early-stage R&amp;D, seeking grant and angel funding
+        </p>
+        <TextGenerateEffect
+          client:load
+          words="An algae bioreactor, at the starting line."
+          className="display mt-6 max-w-[13ch] text-[clamp(2.75rem,8vw,6rem)]"
+        />
+        <p class="mt-7 max-w-[35rem] text-lg text-foam/85 md:text-xl">
+          Project Aether explores a modular, algae-based bioreactor for environmental use. The founding team is in
+          place. Lab work begins when funding does.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href={mail} class="btn btn-lime">Talk to the founder</a>
+          <a href="#status" class="btn btn-ghost">See where we are</a>
+        </div>
+      </div>
+
+      <p class="shell pb-5 text-right text-xs text-foam/60">Illustrative footage. No project equipment is shown.</p>
+    </header>
+
+    <main id="main">
+      <section class="py-20 md:py-28">
+        <div class="shell grid gap-x-16 gap-y-10 md:grid-cols-12">
+          <h2 class="display text-[clamp(2rem,4.6vw,3.5rem)] text-deep md:col-span-7">
+            Can this be scientifically valid, technically practical and commercially meaningful?
+          </h2>
+          <div class="space-y-5 text-moss md:col-span-5 md:pt-3">
+            <p>
+              That is the question Aether exists to answer, for a modular algae-based bioreactor aimed at real-world
+              environmental applications.
+            </p>
+            <p>
+              Right now it is an R&amp;D hypothesis. We have not proven the science, the engineering or the economics
+              yet.
+            </p>
+            <p class="text-ink">
+              We would rather say that upfront. Anyone who funds or joins Aether at this stage should know exactly what
+              stage it is.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="status" class="border-t border-glass bg-white py-20 md:py-28">
+        <div class="shell grid gap-x-16 gap-y-10 md:grid-cols-12">
+          <div class="md:col-span-4">
+            <h2 class="heading text-[clamp(1.875rem,3.6vw,2.75rem)] text-deep">Where we are</h2>
+            <p class="mt-4 text-moss">An honest ledger, updated as things change.</p>
+            <p class="mt-2 text-sm text-moss">Last updated November 2026.</p>
+          </div>
+          <dl class="border-t border-glass md:col-span-8">
+            {
+              status.map((s) => (
+                <div class="grid gap-x-8 gap-y-1 border-b border-glass py-5 sm:grid-cols-[11rem_1fr]">
+                  <dt class="heading text-xl text-deep">{s.k}</dt>
+                  <dd>
+                    <p class="label flex items-center gap-2.5 text-ink">
+                      <span class="lamp" data-state={s.state} />
+                      {s.v}
+                    </p>
+                    <p class="mt-1.5 text-moss">{s.body}</p>
+                  </dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </section>
+
+      <section id="team" class="bg-deep py-20 text-foam md:py-28">
+        <div class="shell">
+          <div class="max-w-[40rem]">
+            <h2 class="heading text-[clamp(1.875rem,3.6vw,2.75rem)]">The founding team</h2>
+            <p class="mt-4 text-foam/75">
+              Five people who said yes before there was funding, each covering a part of the work the lab phase needs.
+            </p>
+          </div>
+          <ul class="mt-12 grid gap-x-12 border-t border-foam/20 md:grid-cols-2">
+            {
+              team.map((m) => (
+                <li class="border-b border-foam/20 py-6">
+                  <p class="heading text-2xl">{m.name}</p>
+                  <p class="label mt-1 text-lime">{m.role}</p>
+                  <p class="mt-2 max-w-[30rem] text-foam/75">{m.body}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section id="funding" class="py-20 md:py-28">
+        <div class="shell grid gap-x-16 gap-y-12 md:grid-cols-12">
+          <div class="md:col-span-5">
+            <h2 class="heading text-[clamp(1.875rem,3.6vw,2.75rem)] text-deep">What funding starts</h2>
+            <p class="mt-4 text-moss">
+              The first goal is evidence, not scale. Funding pays for the lab phase and the team's time on it.
+            </p>
+            <p class="mt-4 text-moss">A pitch deck is available on request.</p>
+          </div>
+          <div class="md:col-span-7">
+            <TracingBeam client:visible colors={['#2c7a4d', '#0d3a2c', '#c9e86b']}>
+              <ol class="space-y-9">
+                {
+                  steps.map((s, i) => (
+                    <li class="grid gap-x-5 gap-y-1 sm:grid-cols-[3rem_1fr]">
+                      <span class="display text-4xl text-leaf" aria-hidden="true">
+                        {i + 1}
+                      </span>
+                      <div>
+                        <h3 class="heading text-2xl text-deep">{s.name}</h3>
+                        <p class="mt-1.5 max-w-[32rem] text-moss">{s.body}</p>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ol>
+            </TracingBeam>
+          </div>
+        </div>
+
+        <div class="shell mt-20 border-t border-glass pt-14">
+          <h2 class="heading text-[clamp(1.5rem,2.8vw,2rem)] text-deep">Who we would like to hear from</h2>
+          <ul class="mt-8 grid gap-x-12 gap-y-8 md:grid-cols-3">
+            {
+              wanted.map((w) => (
+                <li>
+                  <p class="heading text-xl text-deep">{w.name}</p>
+                  <p class="mt-2 text-moss">{w.body}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="bg-deep text-foam">
+      <div class="shell py-20 md:py-28">
+        <h2 class="display max-w-[16ch] text-[clamp(2.25rem,5.4vw,4rem)]">Talk to us before the evidence exists.</h2>
+        <p class="mt-5 max-w-[34rem] text-lg text-foam/75">
+          Early conversations are welcome. Tell us who you are and what you would want to see, and the founder will
+          reply.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a href={mail} class="btn btn-lime">Email the founder</a>
+          <a href={wa} target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
+        </div>
+      </div>
+      <div class="border-t border-foam/15">
+        <div class="shell flex flex-wrap justify-between gap-x-8 gap-y-2 py-6 text-sm text-foam/60">
+          <p>
+            Project Aether is an R&amp;D project of{' '}
+            <a href="https://isetelsolutions.my" class="text-foam underline underline-offset-4">I Setel Solutions</a>{' '}
+            (SSM 202503352257).
+          </p>
+          <p>Klang, Selangor, Malaysia</p>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var v = document.getElementById('hero-loop');
+        if (!v) return;
+        var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var saver = navigator.connection && navigator.connection.saveData;
+        if (calm || saver) return;
+        function start() {
+          v.src = v.dataset.src;
+          v.addEventListener(
+            'playing',
+            function () {
+              v.style.opacity = '1';
+            },
+            { once: true },
+          );
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+        if (document.readyState === 'complete') start();
+        else window.addEventListener('load', start, { once: true });
+      })();
+    </script>
+  </body>
+</html>

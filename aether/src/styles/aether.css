@@ -1,0 +1,159 @@
+@import 'tailwindcss' source('../');
+@source '../../../src/components/ui/tracing-beam.tsx';
+@source '../../../src/components/ui/text-generate-effect.tsx';
+@import '@fontsource-variable/fraunces/soft.css';
+@import '@fontsource-variable/figtree';
+
+/* Token reka bentuk Aether: hijau alga, bukan rupa I Setel. */
+@theme {
+  --color-deep: #0d3a2c; /* hijau klorofil gelap */
+  --color-ink: #0f2a20; /* teks */
+  --color-leaf: #2c7a4d; /* aksen, pautan */
+  --color-moss: #587566; /* teks kedua */
+  --color-foam: #f2f6ec; /* latar halaman */
+  --color-glass: #d5e3d4; /* garis halus */
+  --color-lime: #c9e86b; /* lampu status, butang utama */
+  --color-line: #d5e3d4;
+  --color-signal: #c9e86b;
+
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-foam);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-leaf);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-deep);
+    color: var(--color-lime);
+  }
+}
+
+@layer components {
+  .shell {
+    width: min(100% - 2.5rem, 72rem);
+    margin-inline: auto;
+  }
+  /* Fraunces dengan paksi SOFT: lengkung lembut, terasa organik. */
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 100;
+    font-weight: 420;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .heading {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 100;
+    font-weight: 460;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    padding-inline: 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+  }
+  .btn-lime {
+    background: var(--color-lime);
+    color: var(--color-deep);
+  }
+  .btn-lime:hover {
+    background: #d8f08a;
+  }
+  .btn-ghost {
+    border: 1px solid rgb(242 246 236 / 0.4);
+    color: var(--color-foam);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-foam);
+  }
+  .btn-deep {
+    background: var(--color-deep);
+    color: var(--color-foam);
+  }
+  .btn-deep:hover {
+    background: var(--color-leaf);
+  }
+
+  /* Lampu status: penuh = sudah ada, separuh = sedang berjalan, kosong = belum. */
+  .lamp {
+    display: inline-block;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 999px;
+    flex: none;
+    box-shadow: inset 0 0 0 1.5px var(--color-moss);
+  }
+  .lamp[data-state='on'] {
+    background: var(--color-leaf);
+    box-shadow: 0 0 0 4px rgb(44 122 77 / 0.16);
+  }
+  .lamp[data-state='half'] {
+    background: linear-gradient(90deg, var(--color-leaf) 50%, transparent 50%);
+    box-shadow: inset 0 0 0 1.5px var(--color-leaf);
+  }
+  .hero .lamp[data-state='half'] {
+    background: linear-gradient(90deg, var(--color-lime) 50%, transparent 50%);
+    box-shadow: inset 0 0 0 1.5px var(--color-lime);
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgb(13 58 44 / 0.55) 0%, rgb(13 58 44 / 0) 22%),
+      linear-gradient(95deg, rgb(9 40 30 / 0.82) 0%, rgb(9 40 30 / 0.5) 42%, rgb(9 40 30 / 0) 70%),
+      linear-gradient(to bottom, rgb(13 58 44 / 0) 70%, rgb(13 58 44 / 0.85) 100%);
+  }
+
+  .tge-word {
+    animation: tge-safety 0.01s linear 2.5s forwards;
+  }
+  @keyframes tge-safety {
+    to {
+      opacity: 1;
+      filter: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .tge-word {
+    opacity: 1 !important;
+    filter: none !important;
+    animation: none;
+  }
+}
