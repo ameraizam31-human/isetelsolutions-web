@@ -13,12 +13,48 @@ const t = copy[lang].hero;
 // Video gelung hanya dipaparkan jika failnya wujud dalam static/media/.
 const hasVideo = fs.existsSync('static/media/hero-loop.mp4');
 
-// Telefon: gambar duduk di bawah teks (tiada tindihan). Skrin lebar: gambar penuh di belakang teks.
-const media = 'h-full w-full object-cover object-[90%_100%] md:object-[70%_60%]';
+// Gambar dan video hero ialah latar penuh di belakang teks pada semua saiz skrin.
+// Telefon: media 118% tinggi hero dan dilabuhkan di atas, supaya gerakan lengan robot
+// jatuh di ruang kosong bawah teks (pb-[30svh]); tabir kabus (.hero-veil) melindungi teks.
+const media = 'absolute inset-0 h-full w-full object-cover object-[84%_0%] md:object-[70%_60%]';
 ---
 
 <section class="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
-  <div class="shell relative z-10 flex flex-1 flex-col pt-28 pb-4 md:justify-center md:pt-36 md:pb-24">
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-x-0 top-0 h-[118%] md:h-full">
+      <picture>
+        <source srcset="/media/hero-poster.webp" type="image/webp" />
+        <img
+          src="/media/hero-poster.jpg"
+          alt={t.imageAlt}
+          width="1376"
+          height="774"
+          fetchpriority="high"
+          decoding="async"
+          class={media}
+        />
+      </picture>
+      {
+        hasVideo && (
+          <video
+            id="hero-loop"
+            class:list={['opacity-0 transition-opacity duration-1000', media]}
+            data-src="/media/hero-loop.mp4"
+            muted
+            loop
+            playsinline
+            preload="none"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+        )
+      }
+    </div>
+    <div class="hero-light" aria-hidden="true"></div>
+    <div class="hero-veil" aria-hidden="true"></div>
+  </div>
+
+  <div class="shell relative flex flex-1 flex-col pt-28 pb-[30svh] md:justify-center md:pt-36 md:pb-24">
     <div class="max-w-[46rem]">
       <TextGenerateEffect
         client:load
@@ -55,37 +91,6 @@ const media = 'h-full w-full object-cover object-[90%_100%] md:object-[70%_60%]'
     </ul>
   </div>
 
-  <div class="relative -mt-6 h-[44svh] min-h-72 md:absolute md:inset-0 md:-z-10 md:mt-0 md:h-auto">
-    <picture>
-      <source srcset="/media/hero-poster.webp" type="image/webp" />
-      <img
-        src="/media/hero-poster.jpg"
-        alt={t.imageAlt}
-        width="1376"
-        height="774"
-        fetchpriority="high"
-        decoding="async"
-        class={media}
-      />
-    </picture>
-    {
-      hasVideo && (
-        <video
-          id="hero-loop"
-          class:list={['absolute inset-0 opacity-0 transition-opacity duration-1000', media]}
-          data-src="/media/hero-loop.mp4"
-          muted
-          loop
-          playsinline
-          preload="none"
-          aria-hidden="true"
-          tabindex="-1"
-        />
-      )
-    }
-    <div class="hero-light" aria-hidden="true"></div>
-    <div class="hero-veil" aria-hidden="true"></div>
-  </div>
 </section>
 
 <script is:inline>

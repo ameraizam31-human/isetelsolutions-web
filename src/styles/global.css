@@ -116,9 +116,15 @@
   }
   @media (max-width: 767px) {
     .hero-veil {
-      background:
-        linear-gradient(to bottom, rgb(238 243 248 / 0) 86%, var(--color-mist) 100%),
-        linear-gradient(to bottom, var(--color-mist) 0%, rgb(238 243 248 / 0.7) 18%, rgb(238 243 248 / 0) 46%);
+      background: linear-gradient(
+        to bottom,
+        rgb(238 243 248 / 0.95) 0%,
+        rgb(238 243 248 / 0.88) 48%,
+        rgb(238 243 248 / 0.5) 63%,
+        rgb(238 243 248 / 0) 76%,
+        rgb(238 243 248 / 0) 94%,
+        var(--color-mist) 100%
+      );
     }
   }
 

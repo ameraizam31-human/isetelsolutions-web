@@ -85,7 +85,7 @@ export default function SiteNav({ items, lang, whatsappHref, whatsappLabel, lang
             <img src="/media/isetel-mark.png" alt="" width="149" height="240" className="h-8 w-auto" />
           </span>
           <span className="label text-navy">
-            I Setel<span className="max-sm:hidden"> Solutions</span>
+            I Setel<span className="max-lg:hidden"> Solutions</span>
           </span>
         </a>
 
@@ -155,7 +155,7 @@ export default function SiteNav({ items, lang, whatsappHref, whatsappLabel, lang
             href={whatsappHref}
             target="_blank"
             rel="noopener"
-            className={cn(buttonVariants({ variant: 'accent', size: 'md' }), 'h-12 max-sm:hidden')}
+            className={cn(buttonVariants({ variant: 'accent', size: 'md' }), 'h-12 max-lg:hidden')}
           >
             {whatsappLabel}
           </a>
