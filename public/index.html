@@ -2635,10 +2635,10 @@
                     <div class="glass-card rounded-2xl p-8">
                         <h3 class="text-2xl font-bold text-white mb-6">Contact Form</h3>
                         <p class="text-gray-400 text-sm mb-6">
-                            Contact our team at <a href="mailto:support@isetelsolutions.my" class="text-purple-400 hover:underline">support@isetelsolutions.my</a> or share a short brief below.
+                            Contact our team at <a href="mailto:support@isetelsolutions.my" class="text-purple-400 hover:underline">support@isetelsolutions.my</a> or share a short brief below. Sending opens WhatsApp with your message ready, so you can check it before it goes.
                         </p>
                         
-                        <form class="space-y-4" name="contact" method="POST" data-netlify="true">
+                        <form class="space-y-4" name="contact">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm text-gray-400 mb-2">Full Name</label>
@@ -2646,7 +2646,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm text-gray-400 mb-2">Email Address</label>
-                                    <input type="email" name="email" placeholder="you@example.com" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600" required>
+                                    <input type="email" name="email" placeholder="you@example.com (optional)" class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-600">
                                 </div>
                             </div>
                             <div>
@@ -2657,8 +2657,8 @@
                                 Your details are used only to respond to this enquiry.
                             </p>
                             <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-purple-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center justify-center gap-2">
-                                <span>Send Message</span>
-                                <i class="fas fa-paper-plane"></i>
+                                <span>Send via WhatsApp</span>
+                                <i class="fab fa-whatsapp"></i>
                             </button>
                         </form>
                     </div>
@@ -3033,30 +3033,22 @@
             });
         });
         
-        // Form submission
-        // Form submission - posts to Netlify Forms (form name "contact") without leaving the page
-        document.querySelector('form[name="contact"]').addEventListener('submit', async (e) => {
+        // Contact form: opens WhatsApp with the brief filled in (no server needed, works on any host)
+        document.querySelector('form[name="contact"]').addEventListener('submit', (e) => {
             e.preventDefault();
             const form = e.currentTarget;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const data = new URLSearchParams(new FormData(form));
-            if (!data.has('form-name')) data.append('form-name', form.getAttribute('name'));
-            if (submitBtn) submitBtn.disabled = true;
-            try {
-                const res = await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: data.toString()
-                });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                form.reset();
-                alert('Thank you for your message! We will get back to you soon.');
-            } catch (error) {
-                console.error('Contact form error:', error);
-                alert('Sorry, your message could not be sent. Please email support@isetelsolutions.my or WhatsApp us instead.');
-            } finally {
-                if (submitBtn) submitBtn.disabled = false;
-            }
+            const name = form.elements['full-name'].value.trim();
+            const email = form.elements['email'].value.trim();
+            const message = form.elements['message'].value.trim();
+            const text = [
+                'Hi I Setel Solutions,',
+                '',
+                message,
+                '',
+                `Name: ${name}`,
+                email ? `Email: ${email}` : ''
+            ].filter((line, i, all) => line !== '' || (i > 0 && all[i - 1] !== '')).join('\n').trim();
+            window.open(`https://wa.me/60139972853?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
         });
 
         /* ============================================ */
@@ -3064,10 +3056,9 @@
         /* ============================================ */
 
         const ChatbotWidget = {
-            // Configuration - Uses Netlify Serverless Function (SECURE)
+            // Configuration - chat goes through a server-side proxy (/api/chat), the API key never reaches the browser
             config: {
-                // Use Netlify serverless function - API key is safely stored server-side
-                apiEndpoint: '/.netlify/functions/chat',
+                                apiEndpoint: '/api/chat',
                 botName: 'I Setel AI',
                 typingDelay: 1000,
                 // Set to false to use real API, true for demo mode with mock responses

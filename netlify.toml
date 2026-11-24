@@ -1,0 +1,10 @@
+# Sementara: Netlify masih melayan domain sehingga DNS ditukar ke Cloudflare Pages.
+# Fail ini dibuang selepas pertukaran (lihat README.md).
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
