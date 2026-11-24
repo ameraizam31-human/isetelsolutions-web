@@ -137,6 +137,8 @@ Prices:
 - tap. Stand - RM39.90
 - tap. Custom - RM49.90
 - tap. Pro - RM59.90
+Promo (closing soon): orders of 5 units or more are as low as RM9.98 each on all products; the quantity and total are confirmed on WhatsApp.
+tap. table ordering (pre-order, built per shop): a tap. card on each restaurant table lets the customer open the menu, order and pay through a payment gateway, and the order goes to the kitchen. Send pre-order questions to WhatsApp.
 Ordering is done via WhatsApp. Product site: https://tap.isetelsolutions.my
 
 2) SusunJalan (live). A web app for delivery riders who stack orders. The rider adds orders from a screenshot and SusunJalan works out which stop comes first, then opens each stop in a navigation app. It runs in the browser and is free to start. I Setel is recruiting 20 rider testers; testers get Pro free for 30 days, and riders can ask to join via WhatsApp. App: https://susunjalan.isetelsolutions.my
